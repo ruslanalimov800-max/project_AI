@@ -1,0 +1,15 @@
+django==5.2.7
+djangorestframework==3.18.3
+python-dotenv==1.1.1
+pandas==2.2.3
+numpy==2.2.6
+scipy==1.15.3
+scikit-learn==1.8.0
+joblib==1.5.3
+matplotlib==3.10.3
+nbformat==5.10.4
+nbclient==0.11.0
+ipykernel==7.4.0
+pytest==9.0.2
+pytest-django==4.14.0
+coverage==7.17.2

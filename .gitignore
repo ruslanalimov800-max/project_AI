@@ -1,0 +1,19 @@
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+# Секреты и локальные базы
+.env
+.env.*
+!.env.example
+*.sqlite3
+# Логи
+logs/
+*.log
+# Большие исходные наборы данных в репозиторий не добавляются (малые файлы SMS-набора включены)
+# data/raw/phishing_dataset/
