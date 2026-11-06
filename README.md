@@ -51,7 +51,7 @@ docs/              отчёты по заданиям, паспорт набор
 | Задание | Документ |
 |---|---|
 | 1 | `docs/01_domain_analysis.md`, `docs/diagrams/use_case.puml` |
-| 3 | `docs/SMS_DATASET_PASSPORT.md` (в пункте «Дата загрузки» нужно указать фактическую дату скачивания) |
+| 3 | `docs/SMS_DATASET_PASSPORT.md`  |
 | 4 | `docs/04_PREPROCESSING_REPORT.md` |
 | 5 | `docs/05_EDA_FINDINGS.md`, `docs/figures/` |
 | 6 | `docs/06_TFIDF_FEATURES.md` |
