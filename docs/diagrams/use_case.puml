@@ -1,0 +1,30 @@
+@startuml
+left to right direction
+actor "Пользователь" as User
+actor "Администратор" as Admin
+rectangle "SMS Guard" {
+  usecase "UC-01 Регистрация" as UC1
+  usecase "UC-02 Вход и выход" as UC2
+  usecase "UC-03 Проверка SMS" as UC3
+  usecase "UC-04 Проверка URL" as UC4
+  usecase "UC-05 Просмотр объяснения\nи рекомендации" as UC5
+  usecase "UC-06 История с фильтрами" as UC6
+  usecase "UC-07 Удаление своей проверки" as UC7
+  usecase "UC-08 Профиль и согласие\nна хранение текста" as UC8
+  usecase "UC-09 Статистика (Dashboard)" as UC9
+  usecase "UC-10 Общая статистика системы" as UC10
+}
+User --> UC1
+User --> UC2
+User --> UC3
+User --> UC4
+User --> UC6
+User --> UC7
+User --> UC8
+User --> UC9
+Admin --> UC2
+Admin --> UC10
+UC3 ..> UC5 : <<include>>
+UC4 ..> UC5 : <<include>>
+UC6 ..> UC5 : <<extend>>
+@enduml
