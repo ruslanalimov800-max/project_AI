@@ -1,0 +1,113 @@
+{
+  "threshold": 0.5,
+  "sizes": {
+    "train": 3595,
+    "val": 771,
+    "test": 771
+  },
+  "spam_share": {
+    "train": 0.12072322670375521,
+    "val": 0.12062256809338522,
+    "test": 0.12062256809338522
+  },
+  "feature_dimensions": {
+    "train": [
+      3595,
+      35417
+    ],
+    "val": [
+      771,
+      35417
+    ],
+    "test": [
+      771,
+      35417
+    ]
+  },
+  "validation": {
+    "accuracy": 0.9870298313878081,
+    "precision": 0.9662921348314607,
+    "recall": 0.9247311827956989,
+    "f1": 0.945054945054945,
+    "confusion_matrix": [
+      [
+        675,
+        3
+      ],
+      [
+        7,
+        86
+      ]
+    ]
+  },
+  "error_counts": {
+    "FN": 7,
+    "FP": 3
+  },
+  "errors": [
+    {
+      "type": "FN",
+      "val_row": 2810,
+      "probability": 0.030737199136743224,
+      "text": "Do you ever notice that when you're driving, anyone going slower than you is an idiot and everyone driving faster than you is a maniac?"
+    },
+    {
+      "type": "FN",
+      "val_row": 1384,
+      "probability": 0.0780119005513153,
+      "text": "For sale - arsenal dartboard. Good condition but no doubles or trebles!"
+    },
+    {
+      "type": "FN",
+      "val_row": 5031,
+      "probability": 0.130934710743336,
+      "text": "Latest News! Police station toilet stolen, cops have nothing to go on!"
+    },
+    {
+      "type": "FN",
+      "val_row": 1583,
+      "probability": 0.3213962190356466,
+      "text": "0A$NETWORKS allow companies to bill for SMS, so they are responsible for their \"suppliers\", just as a shop has to give a guarantee on what they sell. B. G."
+    },
+    {
+      "type": "FN",
+      "val_row": 1450,
+      "probability": 0.4161739274105218,
+      "text": "SMS. ac JSco: Energy is high, but u may not know where 2channel it. 2day ur leadership skills r strong. Psychic? Reply ANS w/question. End? Reply END JSCO"
+    },
+    {
+      "type": "FP",
+      "val_row": 2879,
+      "probability": 0.7512153573289969,
+      "text": "Your bill at 3 is £33.65 so thats not bad!"
+    },
+    {
+      "type": "FP",
+      "val_row": 1165,
+      "probability": 0.5883126693724732,
+      "text": "NEFT Transaction with reference number  &lt;#&gt;  for Rs. &lt;DECIMAL&gt;  has been credited to the beneficiary account on  &lt;#&gt;  at  &lt;TIME&gt; : &lt;#&gt;"
+    },
+    {
+      "type": "FP",
+      "val_row": 1527,
+      "probability": 0.5297572026527954,
+      "text": "How to Make a girl Happy? It's not at all difficult to make girls happy. U only need to be... 1. A friend 2. Companion 3. Lover 4. Chef . . .  &lt;#&gt; . Good listener  &lt;#&gt; . Organizer  &lt;#&gt; . Good boyfriend  &lt;#&gt; . Very clean  &lt;#&gt; . Sympathetic  &lt;#&gt; . Athletic  &lt;#&gt; . Warm . . .  &lt;#&gt; . Courageous  &lt;#&gt; . Determined  &lt;#&gt; . True  &lt;#&gt; . Dependable  &lt;#&gt; . Intelligent . . .  &lt;#&gt; . Psychologist  &lt;#&gt; . Pest exterminator  &lt;#&gt; . Psychiatrist  &lt;#&gt; . Healer . .  &lt;#&gt; . Stylist  &lt;#&gt; . Driver . . Aaniye pudunga venaam.."
+    }
+  ],
+  "near_misses_ham": [
+    {
+      "type": "near-FP",
+      "val_row": 4255,
+      "probability": 0.40823400350855726,
+      "text": "\"CHA QUITEAMUZING THATSCOOL BABE,PROBPOP IN & CU SATTHEN HUNNY 4BREKKIE! LOVE JEN XXX. PSXTRA LRG PORTIONS 4 ME PLEASE \""
+    },
+    {
+      "type": "near-FP",
+      "val_row": 4553,
+      "probability": 0.39780487480075444,
+      "text": "WE REGRET TO INFORM U THAT THE NHS HAS MADE A MISTAKE.U WERE NEVER ACTUALLY BORN.PLEASE REPORT 2 YOR LOCAL HOSPITAL 2B TERMINATED.WE R SORRY 4 THE INCONVENIENCE"
+    }
+  ],
+  "reload_predictions_identical": true,
+  "fresh_interpreter_load_ok": true
+}
