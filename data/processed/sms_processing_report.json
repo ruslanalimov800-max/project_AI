@@ -1,0 +1,88 @@
+{
+  "original_rows": 5574,
+  "original_by_class": {
+    "ham": 4827,
+    "spam": 747
+  },
+  "empty_removed_by_class": {
+    "ham": 0,
+    "spam": 0
+  },
+  "duplicates_removed_by_class": {
+    "ham": 310,
+    "spam": 127
+  },
+  "clean_rows": 5137,
+  "clean_by_class": {
+    "ham": 4517,
+    "spam": 620
+  },
+  "steps": [
+    {
+      "step": "Unicode-нормализация NFKC",
+      "affected": 15,
+      "ham": 15,
+      "spam": 0
+    },
+    {
+      "step": "HTML-сущности (lt, gt, amp и др.)",
+      "affected": 309,
+      "ham": 309,
+      "spam": 0
+    },
+    {
+      "step": "Нижний регистр",
+      "affected": 5486,
+      "ham": 4747,
+      "spam": 739
+    },
+    {
+      "step": "Удаление управляющих символов",
+      "affected": 35,
+      "ham": 33,
+      "spam": 2
+    },
+    {
+      "step": "e-mail → <email>",
+      "affected": 7,
+      "ham": 1,
+      "spam": 6
+    },
+    {
+      "step": "URL → <url>",
+      "affected": 136,
+      "ham": 15,
+      "spam": 121
+    },
+    {
+      "step": "Телефон → <phone>",
+      "affected": 407,
+      "ham": 2,
+      "spam": 405
+    },
+    {
+      "step": "Сумма с валютой → <money>",
+      "affected": 248,
+      "ham": 11,
+      "spam": 237
+    },
+    {
+      "step": "Прочие числа → <num>",
+      "affected": 1586,
+      "ham": 925,
+      "spam": 661
+    },
+    {
+      "step": "Повторы !!! и ??? → ! и ?",
+      "affected": 95,
+      "ham": 82,
+      "spam": 13
+    },
+    {
+      "step": "Лишние пробелы",
+      "affected": 430,
+      "ham": 397,
+      "spam": 33
+    }
+  ]
+}
