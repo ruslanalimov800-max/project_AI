@@ -99,3 +99,7 @@ LOGGING = {
         'sms_guard': {'handlers': ['file'], 'level': 'INFO', 'propagate': False},
     },
 }
+
+LOGIN_URL = "/accounts/login/"
+LOGIN_REDIRECT_URL = "/analyze/"
+LOGOUT_REDIRECT_URL = "/"
