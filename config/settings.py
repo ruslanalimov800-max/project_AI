@@ -26,6 +26,7 @@ if not SECRET_KEY:
     SECRET_KEY = 'dev-only-insecure-key'  # допустим только при DEBUG=1
 
 ALLOWED_HOSTS = [h.strip() for h in os.getenv('ALLOWED_HOSTS', '127.0.0.1,localhost').split(',') if h.strip()]
+CSRF_TRUSTED_ORIGINS = [h.strip() for h in os.getenv('CSRF_TRUSTED_ORIGINS', '').split(',') if h.strip()]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
