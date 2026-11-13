@@ -25,13 +25,13 @@ class Check(models.Model):
         indexes = [models.Index(fields=["user", "-created_at"]), models.Index(fields=["risk_level", "-created_at"])]
 
 class URLResult(models.Model):
-    check = models.ForeignKey(Check, on_delete=models.CASCADE, related_name="url_results")
+    analysis_check = models.ForeignKey(Check, on_delete=models.CASCADE, related_name="url_results")
     url = models.URLField(max_length=2048)
     p_phishing = models.FloatField(null=True, blank=True)
     label = models.CharField(max_length=20, blank=True)
 
 class DetectedFeature(models.Model):
-    check = models.ForeignKey(Check, on_delete=models.CASCADE, related_name="detected_features")
+    analysis_check = models.ForeignKey(Check, on_delete=models.CASCADE, related_name="detected_features")
     group = models.CharField(max_length=40)
     phrase = models.CharField(max_length=255)
 
