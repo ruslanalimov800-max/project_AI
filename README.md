@@ -1,65 +1,49 @@
-# SMS Guard — интеллектуальная система обнаружения мошеннических SMS и ссылок
+# SMS Guard — система обнаружения подозрительных SMS и URL
 
-Веб-приложение на Django (Python 3.11+). Выполнены **задания 1–7**: анализ предметной области, каркас проекта, данные SMS,
-предобработка, EDA, признаки TF-IDF и baseline-модель. Остальные задания (8–18) намеренно не реализованы.
+Python 3.11+, Django 5.2, Django REST Framework, scikit-learn.
 
-## Запуск (Windows PowerShell)
+## Установка и запуск
 
-```powershell
+```bash
 python -m venv .venv
-.\.venv\Scripts\Activate.ps1
+# Windows: .venv\\Scripts\\activate
+# Linux/macOS: source .venv/bin/activate
 python -m pip install -r requirements.txt
-copy .env.example .env
+cp .env.example .env
+python manage.py migrate
 python manage.py check
 python manage.py runserver
 ```
 
-Откройте http://127.0.0.1:8000/ (главная-заглушка) и http://127.0.0.1:8000/api/v1/health/ — ответ `{"status": "ok"}`.
-Linux/macOS: `source .venv/bin/activate` и `cp .env.example .env`.
-Файл `.env` в репозиторий не входит; при `DEBUG=0` обязателен `SECRET_KEY`.
+Откройте `http://127.0.0.1:8000/`. Для Windows PowerShell используйте `copy .env.example .env`.
 
-## Воспроизведение заданий 3–7
+## Проверки и модели
 
-```powershell
-python -m ml.data.prepare_sms
-python -m ml.sms_baseline
+```bash
 python -m pytest -q
+python -m ml.sms_baseline
+python -m ml.sms_compare
+python -m ml.train_url data/raw/url_dataset.csv --url-column url --label-column label
 ```
 
-Команды выполняются из корня проекта по порядку: подготовка данных (`data/processed/`, отчёт `docs/04_PREPROCESSING_REPORT.md`) →
-обучение baseline (`ml/artifacts/sms_baseline.joblib`) → тесты. Ноутбуки `notebooks/01_eda_sms.ipynb` и
-`notebooks/02_sms_features_baseline.ipynb` содержат выполненные ячейки; пересоздают графики и документы заданий 5–7 при перезапуске.
-Для новых экспериментов используйте сохранённое разбиение `data/processed/sms_split.json` и не подбирайте параметры по тесту.
+URL-модель обучается только на предоставленном реальном размеченном CSV: `0` — легитимный URL, `1` — фишинг. В репозитории URL-датасет отсутствует, поэтому `ml/artifacts/url_model.joblib` не создаётся искусственно; до обучения приложение честно показывает, что URL-модель недоступна. Не интерпретируйте это как подтверждённую классификацию URL.
+
+## Основные маршруты
+
+- `/` — главная страница.
+- `/accounts/register/`, `/accounts/login/` — регистрация и вход.
+- `/analyze/` — анализ SMS/URL (требуется вход).
+- `/api/v1/analyze/` — POST JSON `{"text":"..."}` (требуется вход).
+- `/history/` — история текущего пользователя.
+- `/dashboard/` — статистика текущего пользователя.
+- `/api/v1/health/` — проверка работоспособности.
 
 ## Структура
 
-```
-config/            настройки Django, urls.py, wsgi.py
-apps/accounts/     регистрация, вход, профиль (задания 10+)
-apps/analysis/     главная, health; позднее — сервис анализа и API
-apps/dashboard/    статистика (задание 15)
-ml/                preprocessing.py, sms_features.py, sms_baseline.py, data/ (load_sms.py, prepare_sms.py), artifacts/
-notebooks/         01_eda_sms.ipynb, 02_sms_features_baseline.ipynb
-data/raw|processed исходные и обработанные данные, индексы разбиения
-templates/ static/ HTML-шаблоны и статика
-tests/             pytest
-docs/              отчёты по заданиям, паспорт набора, диаграмма Use Case
-```
-
-## Документы
-
-| Задание | Документ |
-|---|---|
-| 1 | `docs/01_domain_analysis.md`, `docs/diagrams/use_case.puml` |
-| 3 | `docs/SMS_DATASET_PASSPORT.md`  |
-| 4 | `docs/04_PREPROCESSING_REPORT.md` |
-| 5 | `docs/05_EDA_FINDINGS.md`, `docs/figures/` |
-| 6 | `docs/06_TFIDF_FEATURES.md` |
-| 7 | `docs/07_BASELINE_REPORT.md` |
+`config/` — Django; `apps/accounts/`, `apps/analysis/`, `apps/dashboard/` — веб-приложения;
+`ml/` — предобработка, признаки, SMS- и URL-модели, правила и риск; `data/` — датасеты;
+`templates/`, `static/` — интерфейс; `tests/` — тесты; `docs/` — отчёты ТЗ.
 
 ## Ограничения
 
-Обучающий набор UCI SMS Spam Collection англоязычный, а «spam» не равен финансовому мошенничеству: метрики на нём не доказывают
-качество для русского и казахского языков. Оценка носит вероятностный характер и не гарантирует безопасность.
-
-Задания 8–18 (сравнение моделей, URL-модуль, оценка риска, API, интерфейс, история, Dashboard) пока не реализованы.
+UCI SMS Spam Collection англоязычная, а класс spam не равен финансовому мошенничеству. Поэтому SMS-вероятность — вспомогательный сигнал, а не гарантия. URL-модель требует отдельного реального размеченного набора и оценки на отложенной выборке. Проверка не выполняет сетевые запросы к URL и не гарантирует безопасность.
