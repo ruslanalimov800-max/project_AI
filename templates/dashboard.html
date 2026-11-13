@@ -156,10 +156,12 @@ new Chart(document.getElementById('categoryChart'), {
     }]
   },
   options: {
+    responsive: true,
+    maintainAspectRatio: false,
     cutout: '70%',
     plugins: {
-      title: { display: true, text: 'Категории риска' },
-      legend: { display: true, position: 'bottom' }
+      title: { display: false },
+      legend: { display: false }
     }
   }
 });
