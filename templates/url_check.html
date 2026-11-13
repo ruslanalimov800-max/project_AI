@@ -1,1 +1,106 @@
-{% extends 'base.html' %}{% block title %}Проверка URL · SMS Guard{% endblock %}{% block content %}<div class="page-heading"><div><span class="eyebrow">АНАЛИЗ ССЫЛОК</span><h1>Проверка URL</h1><p>Проверьте структуру ссылки до перехода на сайт</p></div></div><section class="panel input-panel"><form method="post">{% csrf_token %}<label class="form-label fw-semibold" for="urlText">URL-адрес</label><div class="url-input-row"><input class="form-control" type="text" name="text" id="urlText" value="{{ submitted|default:'' }}" placeholder="https://example.com/login" maxlength="2048" required><button class="btn btn-primary">Проверить</button></div><div class="hint">ⓘ Ссылка анализируется только по её структуре. Система не открывает её.</div></form></section>{% if result %}{% include 'result_card.html' %}<section class="panel mt-3"><div class="panel-heading"><h2>Извлечённые признаки URL</h2><span class="url-plain">{{ result.domain }}</span></div><div class="table-responsive"><table class="table app-table"><thead><tr><th>Признак</th><th>Значение</th><th>Статус</th></tr></thead><tbody>{% for row in result.feature_rows %}<tr class="{% if row.active %}table-warning{% endif %}"><td>{{ row.label }}</td><td>{{ row.value }}</td><td>{% if row.active %}<span class="risk-badge medium">Обнаружен</span>{% else %}<span class="risk-badge low">Не обнаружен</span>{% endif %}</td></tr>{% endfor %}</tbody></table></div></section>{% endif %}{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Проверка URL · SMS Guard{% endblock %}
+{% block content %}
+<div class="page-heading">
+  <div>
+    <span class="eyebrow">АНАЛИЗ ССЫЛОК</span>
+    <h1>Проверка URL</h1>
+    <p>Проверьте структуру интернет-ссылки до перехода на сайт</p>
+  </div>
+</div>
+
+{% if not model_available %}
+<div class="alert alert-danger">
+  <strong>Внимание:</strong> Файл ML-модели классификации URL отсутствует или временно недоступен (НФТ-14).
+</div>
+{% endif %}
+
+<section class="panel input-panel">
+  <form method="post" id="urlForm" novalidate>
+    {% csrf_token %}
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+      <label class="form-label fw-semibold mb-0" for="urlText">URL-адрес</label>
+      <div class="d-flex gap-2 flex-wrap">
+        <span class="text-secondary small align-self-center">Примеры:</span>
+        <button type="button" class="btn btn-sm btn-outline-success url-example-btn" data-url="https://www.example.com/about">● Безопасная</button>
+        <button type="button" class="btn btn-sm btn-outline-danger url-example-btn" data-url="http://xn--exmple-cua.test/secure/login?verify=1">▲ Punycode / Фишинг</button>
+      </div>
+    </div>
+    <div class="url-input-row">
+      <input class="form-control" type="text" name="text" id="urlText" value="{{ submitted|default:'' }}" placeholder="https://example.com/login" maxlength="2048" required>
+      <button class="btn btn-primary" type="submit" id="submitUrlBtn">
+        <span id="urlSpinner" class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+        <span>Проверить ссылку</span>
+      </button>
+    </div>
+    <div id="urlFieldError" class="field-error mt-2 {% if not error_text %}d-none{% endif %}">{{ error_text|default:'' }}</div>
+    <div class="hint mt-2">ⓘ Ссылка не открывается: анализируется только её структура (22 признака без обращения к сети).</div>
+  </form>
+</section>
+
+{% if result %}
+  {% include 'result_card.html' %}
+  <section class="panel mt-3">
+    <div class="panel-heading">
+      <h2>Извлечённые признаки URL (22 признака)</h2>
+      <span class="url-plain">Выделенный домен: <strong>{{ result.domain }}</strong></span>
+    </div>
+    <div class="table-responsive">
+      <table class="table app-table">
+        <thead>
+          <tr><th>Признак</th><th>Значение</th><th>Статус</th></tr>
+        </thead>
+        <tbody>
+          {% for row in result.feature_rows %}
+          <tr class="{% if row.active %}table-warning{% endif %}">
+            <td>{{ row.label }}</td>
+            <td>{{ row.value }}</td>
+            <td>
+              {% if row.active %}
+                <span class="risk-badge high">▲ Сработал</span>
+              {% else %}
+                <span class="risk-badge low">● Норма</span>
+              {% endif %}
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </section>
+{% endif %}
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function() {
+  const urlInput = document.getElementById('urlText');
+  const form = document.getElementById('urlForm');
+  const btn = document.getElementById('submitUrlBtn');
+  const spinner = document.getElementById('urlSpinner');
+  const errBox = document.getElementById('urlFieldError');
+
+  document.querySelectorAll('.url-example-btn').forEach(function(b) {
+    b.addEventListener('click', function() {
+      if (urlInput) urlInput.value = b.getAttribute('data-url') || '';
+      if (errBox) errBox.classList.add('d-none');
+    });
+  });
+
+  if (form) {
+    form.addEventListener('submit', function(ev) {
+      if (!urlInput || !urlInput.value.trim()) {
+        ev.preventDefault();
+        if (errBox) {
+          errBox.textContent = 'Поле URL не может быть пустым. Введите ссылку для проверки.';
+          errBox.classList.remove('d-none');
+        }
+        return;
+      }
+      if (btn) btn.disabled = true;
+      if (spinner) spinner.classList.remove('d-none');
+    });
+  }
+})();
+</script>
+{% endblock %}

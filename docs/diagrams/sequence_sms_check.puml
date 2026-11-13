@@ -1,0 +1,21 @@
+@startuml
+title Sequence Diagram: API /api/v1/check/sms/
+actor User
+participant "Web UI" as UI
+participant "Django/DRF View" as API
+participant "ModelPredictor" as MP
+participant "Analyzer & Risk" as AR
+database "SQLite/PostgreSQL" as DB
+
+User -> UI: Вводит текст SMS и нажимает "Проверить"
+UI -> API: POST /api/v1/check/sms/ {text}
+API -> API: Проверка авторизации, rate limit (30/мин), сериализатор
+API -> MP: Проверка готовности моделей (503 если нет)
+API -> AR: analyze_message(text)
+AR -> MP: predict_sms_proba(text), predict_url_proba(urls)
+MP --> AR: P_sms, P_url_max
+AR --> API: risk_score, category, explanation, recommendation
+API -> DB: Сохранить Check, URLResult, DetectedFeature
+API --> UI: 200 OK JSON результата
+UI --> User: Отображение карточки риска и причин
+@enduml

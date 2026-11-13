@@ -1,1 +1,85 @@
-{% extends 'base.html' %}{% block title %}Результат проверки · SMS Guard{% endblock %}{% block content %}<div class="page-heading"><div><span class="eyebrow">ПРОВЕРКА №{{ check.pk }}</span><h1>Подробный результат</h1><p>{{ check.created_at|date:'d.m.Y H:i' }} · {{ check.check_type|upper }}</p></div><a class="btn btn-light" href="{% url 'history' %}">← К истории</a></div><section class="result-panel {{ check.risk_level }}"><div class="result-top"><h2>{{ check.get_risk_level_display }} риск</h2><span class="risk-badge {{ check.risk_level }}">{{ check.risk_score }}/100</span></div><div class="result-section"><h3>Проверенный текст</h3><p class="preserve-text">{{ check.input_masked }}</p></div><div class="result-section"><h3>Объяснение</h3><ul class="feature-list">{% for item in check.explanation %}<li>{{ item }}</li>{% endfor %}</ul></div><div class="result-section"><h3>Ссылки</h3>{% for item in check.url_results.all %}<p class="url-plain">{{ item.url }} — {{ item.label }}{% if item.p_phishing != None %} ({{ item.p_phishing|floatformat:3 }}){% endif %}</p>{% empty %}<p>Ссылки не обнаружены.</p>{% endfor %}</div><div class="recommendation"><strong>Рекомендация</strong><p>{{ check.recommendation }}</p></div><p class="disclaimer">Оценка носит вероятностный характер и не гарантирует безопасность сообщения или ссылки.</p></section>{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Результат проверки №{{ check.pk }} · SMS Guard{% endblock %}
+{% block content %}
+<div class="page-heading">
+  <div>
+    <span class="eyebrow">ПРОВЕРКА №{{ check.pk }} · ЯЗЫК: {{ check.language|upper|default:'EN' }}</span>
+    <h1>Подробный результат анализа</h1>
+    <p>{{ check.created_at|date:'d.m.Y H:i' }} · Тип: {{ check.check_type|upper }} · Версии моделей: SMS={{ check.sms_model_version }}, URL={{ check.url_model_version }}</p>
+  </div>
+  <div class="d-flex gap-2">
+    <a class="btn btn-light" href="{% url 'history' %}">← К истории</a>
+    <form method="post" onsubmit="return confirm('Вы уверены, что хотите удалить эту запись проверки?');">
+      {% csrf_token %}
+      <input type="hidden" name="action" value="delete">
+      <button type="submit" class="btn btn-outline-danger">Удалить запись</button>
+    </form>
+  </div>
+</div>
+
+<section class="result-panel {{ check.risk_level }}">
+  <div class="result-top">
+    <h2>
+      {% if check.risk_level == 'high' %}
+        ⚠ МОШЕННИЧЕСКОЕ ({{ check.category }})
+      {% elif check.risk_level == 'medium' %}
+        ⚡ ПОДОЗРИТЕЛЬНОЕ ({{ check.category }})
+      {% else %}
+        ✔ БЕЗОПАСНОЕ ({{ check.category }})
+      {% endif %}
+    </h2>
+    <span class="risk-badge {{ check.risk_level }}">
+      {% if check.risk_level == 'high' %}▲ Высокий риск{% elif check.risk_level == 'medium' %}◆ Средний риск{% else %}● Низкий риск{% endif %}
+      · {{ check.risk_score }}/100
+    </span>
+  </div>
+
+  <div class="prob-grid mb-3">
+    <div>
+      <span>Вероятность SMS-модели (P_sms)</span>
+      <strong>{% if check.p_sms != None %}{{ check.p_sms|floatformat:3 }}{% else %}Не применялась{% endif %}</strong>
+    </div>
+    <div>
+      <span>Максимальная вероятность URL-модели (P_url)</span>
+      <strong>{% if check.p_url != None %}{{ check.p_url|floatformat:3 }}{% else %}Ссылок нет{% endif %}</strong>
+    </div>
+  </div>
+
+  <div class="result-section">
+    <h3>Проверенный текст / ссылка (неактивный текст)</h3>
+    <p class="preserve-text">{% if check.input_text %}{{ check.input_text }}{% else %}{{ check.input_masked }}{% endif %}</p>
+    {% if not check.input_text %}
+    <small class="text-secondary">Сохранена маскированная версия (номера телефонов, карт и суммы заменены на *** в соответствии с настройками приватности).</small>
+    {% endif %}
+  </div>
+
+  <div class="result-section">
+    <h3>Обнаруженные признаки и объяснение результата</h3>
+    <ul class="feature-list">
+      {% for item in check.explanation %}
+      <li>{{ item }}</li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <div class="result-section">
+    <h3>Проверенные ссылки (не кликабельны)</h3>
+    {% for item in check.url_results.all %}
+      <div class="url-result mb-2">
+        <span class="url-plain">Домен: <strong>{{ item.domain }}</strong> · {{ item.url }}</span>
+        <span class="risk-badge {% if item.category == 'DANGEROUS' or item.label == 'phishing' %}high{% elif item.category == 'SUSPICIOUS' %}medium{% else %}low{% endif %}">
+          {{ item.category|default:item.label }} {% if item.p_url != None %}(P={{ item.p_url|floatformat:2 }}){% elif item.p_phishing != None %}(P={{ item.p_phishing|floatformat:2 }}){% endif %}
+        </span>
+      </div>
+    {% empty %}
+      <p class="text-secondary mb-0">Ссылки в сообщении не обнаружены.</p>
+    {% endfor %}
+  </div>
+
+  <div class="recommendation">
+    <strong>Рекомендация пользователю:</strong>
+    <p class="mb-1">{{ check.recommendation }}</p>
+    <p class="disclaimer mb-0">Оценка носит вероятностный характер и не гарантирует безопасность сообщения или ссылки.</p>
+  </div>
+</section>
+{% endblock %}

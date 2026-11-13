@@ -1,0 +1,62 @@
+{
+  "phiusiil_raw_rows": 235795,
+  "kaggle_raw_rows": 651191,
+  "combined_raw_rows": 886986,
+  "invalid_removed": 53,
+  "duplicates_removed": 701,
+  "final_rows": 60000,
+  "class_balance": {
+    "safe_0": 38305,
+    "phishing_1": 21695,
+    "phishing_share": 0.3616
+  },
+  "split_sizes": {
+    "train": 40726,
+    "val": 9599,
+    "test": 9675
+  },
+  "unique_domains": {
+    "train": 22463,
+    "val": 4814,
+    "test": 4814,
+    "train_test_overlap": 0
+  },
+  "eda_key_6_features": {
+    "url_length": {
+      "safe_mean": 55.2342,
+      "phishing_mean": 59.4628,
+      "safe_median": 44.0,
+      "phishing_median": 45.0
+    },
+    "host_length": {
+      "safe_mean": 16.8289,
+      "phishing_mean": 19.5262,
+      "safe_median": 15.0,
+      "phishing_median": 17.0
+    },
+    "path_length": {
+      "safe_mean": 23.8688,
+      "phishing_mean": 17.1015,
+      "safe_median": 17.0,
+      "phishing_median": 10.0
+    },
+    "subdomain_count": {
+      "safe_mean": 0.4004,
+      "phishing_mean": 0.6273,
+      "safe_median": 0.0,
+      "phishing_median": 1.0
+    },
+    "suspicious_word_count": {
+      "safe_mean": 0.0994,
+      "phishing_mean": 0.1026,
+      "safe_median": 0.0,
+      "phishing_median": 0.0
+    },
+    "domain_entropy": {
+      "safe_mean": 3.3234,
+      "phishing_mean": 3.4124,
+      "safe_median": 3.3661,
+      "phishing_median": 3.4273
+    }
+  }
+}

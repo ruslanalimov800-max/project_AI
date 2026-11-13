@@ -1,1 +1,27 @@
-{% extends 'base.html' %}{% block title %}Вход · SMS Guard{% endblock %}{% block content %}<section class="auth-card"><div class="auth-logo"><span class="brand-mark">S</span><h1>SMS Guard</h1><p>Защита от SMS-мошенничества</p></div><h2>Вход в систему</h2><form method="post">{% csrf_token %}{% if form.non_field_errors %}<div class="alert alert-danger">Неверный логин или пароль.</div>{% endif %}<label class="form-label">Логин</label><input class="form-control" name="username" autocomplete="username" required autofocus><label class="form-label mt-3">Пароль</label><input class="form-control" type="password" name="password" autocomplete="current-password" required><button class="btn btn-primary w-100 mt-4">Войти</button></form><p class="auth-foot">Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p></section>{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Вход · SMS Guard{% endblock %}
+{% block content %}
+<section class="auth-card">
+  <div class="auth-logo">
+    <span class="brand-mark">S</span>
+    <h1>SMS Guard</h1>
+    <p>Защита от SMS-мошенничества</p>
+  </div>
+  <h2>Вход в систему</h2>
+  {% if error_message %}
+    <div class="alert alert-danger py-2">{{ error_message }}</div>
+  {% endif %}
+  {% if form and form.non_field_errors %}
+    <div class="alert alert-danger py-2">Неверный логин или пароль.</div>
+  {% endif %}
+  <form method="post">
+    {% csrf_token %}
+    <label class="form-label" for="loginUsername">Логин</label>
+    <input class="form-control" id="loginUsername" name="username" value="{{ username|default:'' }}" autocomplete="username" required autofocus>
+    <label class="form-label mt-3" for="loginPassword">Пароль</label>
+    <input class="form-control" id="loginPassword" type="password" name="password" autocomplete="current-password" required>
+    <button class="btn btn-primary w-100 mt-4" type="submit">Войти</button>
+  </form>
+  <p class="auth-foot">Нет аккаунта? <a href="{% url 'register' %}">Зарегистрироваться</a></p>
+</section>
+{% endblock %}

@@ -1,1 +1,214 @@
-{% extends 'base.html' %}{% block title %}Dashboard · SMS Guard{% endblock %}{% block content %}<div class="page-heading"><div><span class="eyebrow">ОБЗОР СИСТЕМЫ</span><h1>Dashboard</h1><p>Сводная статистика ваших проверок</p></div><span class="period-pill">Последние 30 дней</span></div><div class="stats-grid"><div class="stat-card"><span>Всего проверок</span><strong>{{ total }}</strong><small>SMS и URL</small></div><div class="stat-card safe"><span>Безопасные</span><strong>{{ safe_count }}</strong><small>Низкий риск</small></div><div class="stat-card warning"><span>Подозрительные</span><strong>{{ suspicious_count }}</strong><small>Средний риск</small></div><div class="stat-card danger"><span>Мошеннические</span><strong>{{ fraudulent_count }}</strong><small>Высокий риск</small></div></div><div class="dashboard-grid"><section class="panel"><div class="panel-heading"><h2>Распределение категорий</h2></div><div class="chart-wrap"><canvas id="categoryChart"></canvas><div class="chart-center"><strong>{{ total }}</strong><small>проверок</small></div></div><div class="legend-row"><span><i class="dot green"></i> Безопасные</span><span><i class="dot yellow"></i> Подозрительные</span><span><i class="dot red"></i> Мошеннические</span></div></section><section class="panel"><div class="panel-heading"><h2>Проверки за 30 дней</h2></div><div class="line-wrap"><canvas id="dailyChart"></canvas></div></section></div><section class="panel mt-4"><div class="panel-heading"><h2>Последние проверки</h2><a href="{% url 'history' %}">Вся история →</a></div><div class="table-responsive"><table class="table app-table"><thead><tr><th>Дата</th><th>Тип</th><th>Фрагмент</th><th>Риск</th><th>Результат</th></tr></thead><tbody>{% for c in recent %}<tr onclick="location.href='{% url 'check-detail' c.pk %}'"><td>{{ c.created_at|date:'d.m H:i' }}</td><td>{{ c.check_type|upper }}</td><td>{{ c.input_masked|truncatechars:48 }}</td><td>{{ c.risk_score }}/100</td><td><span class="risk-badge {{ c.risk_level }}">{{ c.get_risk_level_display }}</span></td></tr>{% empty %}<tr><td colspan="5" class="empty-state">Пока нет проверок. Начните с анализа SMS.</td></tr>{% endfor %}</tbody></table></div></section><script>new Chart(document.getElementById('categoryChart'),{type:'doughnut',data:{labels:['Безопасные','Подозрительные','Мошеннические'],datasets:[{data:[{{ safe_count }},{{ suspicious_count }},{{ fraudulent_count }}],backgroundColor:['#22a06b','#e8a317','#d94b55'],borderWidth:0}]},options:{cutout:'72%',plugins:{legend:{display:false}}}});new Chart(document.getElementById('dailyChart'),{type:'line',data:{labels:{{ day_labels|safe }},datasets:[{label:'Проверки',data:{{ day_values|safe }},borderColor:'#3978d4',backgroundColor:'rgba(57,120,212,.12)',fill:true,tension:.35}]},options:{maintainAspectRatio:false,plugins:{legend:{display:false}},scales:{y:{beginAtZero:true,ticks:{precision:0}}}}});</script>{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Dashboard · SMS Guard{% endblock %}
+{% block content %}
+<div class="page-heading">
+  <div>
+    <span class="eyebrow">ОБЗОР СИСТЕМЫ {% if is_admin %}· РЕЖИМ АДМИНИСТРАТОРА (ВСЕ ПОЛЬЗОВАТЕЛИ){% endif %}</span>
+    <h1>Dashboard</h1>
+    <p>Сводная картина проверок, динамика по дням и топ сработавших признаков</p>
+  </div>
+  <div class="d-flex gap-2 align-items-center">
+    <a class="btn btn-sm {% if period_days == 7 %}btn-primary{% else %}btn-outline-secondary{% endif %}" href="?days=7">7 дней</a>
+    <a class="btn btn-sm {% if period_days == 30 %}btn-primary{% else %}btn-outline-secondary{% endif %}" href="?days=30">30 дней</a>
+    <a class="btn btn-sm {% if period_days == 90 %}btn-primary{% else %}btn-outline-secondary{% endif %}" href="?days=90">90 дней</a>
+  </div>
+</div>
+
+<div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));">
+  <div class="stat-card">
+    <span>Всего SMS / URL</span>
+    <strong>{{ sms_count }} / {{ url_count }}</strong>
+    <small>Всего проверок: {{ total }}</small>
+  </div>
+  <div class="stat-card safe">
+    <span>Безопасные</span>
+    <strong>{{ safe_count }}</strong>
+    <small>Низкий риск (SAFE)</small>
+  </div>
+  <div class="stat-card warning">
+    <span>Подозрительные</span>
+    <strong>{{ suspicious_count }}</strong>
+    <small>Средний риск (SUSPICIOUS)</small>
+  </div>
+  <div class="stat-card danger">
+    <span>Мошеннические</span>
+    <strong>{{ fraudulent_count }}</strong>
+    <small>Высокий риск (FRAUDULENT)</small>
+  </div>
+  <div class="stat-card">
+    <span>Средний Risk Score</span>
+    <strong>{{ avg_risk_score }}</strong>
+    <small>Из 100 баллов</small>
+  </div>
+</div>
+
+{% if is_admin %}
+<section class="panel mt-3 mb-3">
+  <div class="panel-heading">
+    <h2>Активные версии ML-моделей (блок администратора)</h2>
+  </div>
+  <div class="row g-3">
+    <div class="col-md-6">
+      <div class="p-3 border rounded">
+        <strong>SMS-классификатор:</strong> версия <code>{{ active_models.sms.version|default:'1.0.0' }}</code> · алгоритм <code>{{ active_models.sms.algorithm|default:'LinearSVM' }}</code>
+        {% if active_models.sms.test_metrics %}
+        <div class="small text-secondary mt-1">
+          Test Precision: {{ active_models.sms.test_metrics.precision }} · Recall: {{ active_models.sms.test_metrics.recall }} · F1: {{ active_models.sms.test_metrics.f1 }} · ROC-AUC: {{ active_models.sms.test_metrics.roc_auc }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="p-3 border rounded">
+        <strong>URL-классификатор:</strong> версия <code>{{ active_models.url.version|default:'1.0.0' }}</code> · алгоритм <code>{{ active_models.url.algorithm|default:'RandomForest' }}</code>
+        {% if active_models.url.test_metrics %}
+        <div class="small text-secondary mt-1">
+          Test Precision: {{ active_models.url.test_metrics.precision }} · Recall: {{ active_models.url.test_metrics.recall }} · F1: {{ active_models.url.test_metrics.f1 }} · ROC-AUC: {{ active_models.url.test_metrics.roc_auc }}
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+
+{% if total == 0 %}
+<section class="panel text-center p-5 my-4">
+  <h3>У вас пока нет выполненных проверок</h3>
+  <p class="text-secondary">Проверьте подозрительное SMS-сообщение или интернет-ссылку, чтобы увидеть статистику и графики.</p>
+  <a class="btn btn-primary" href="{% url 'check-sms' %}">Перейти к проверке SMS</a>
+</section>
+{% else %}
+<div class="dashboard-grid">
+  <section class="panel">
+    <div class="panel-heading"><h2>Распределение категорий</h2></div>
+    <div class="chart-wrap">
+      <canvas id="categoryChart"></canvas>
+      <div class="chart-center"><strong>{{ total }}</strong><small>проверок</small></div>
+    </div>
+    <div class="legend-row">
+      <span><i class="dot green"></i> Безопасные</span>
+      <span><i class="dot yellow"></i> Подозрительные</span>
+      <span><i class="dot red"></i> Мошеннические</span>
+    </div>
+  </section>
+  <section class="panel">
+    <div class="panel-heading"><h2>Динамика проверок за {{ period_days }} дней (по категориям)</h2></div>
+    <div class="line-wrap"><canvas id="dailyChart"></canvas></div>
+  </section>
+</div>
+
+<section class="panel mt-4">
+  <div class="panel-heading"><h2>Топ-5 сработавших признаков социальной инженерии и угроз</h2></div>
+  <div style="height: 220px;"><canvas id="topFeaturesChart"></canvas></div>
+</section>
+{% endif %}
+
+<section class="panel mt-4">
+  <div class="panel-heading">
+    <h2>Последние 10 проверок</h2>
+    <a href="{% url 'history' %}">Вся история →</a>
+  </div>
+  <div class="table-responsive">
+    <table class="table app-table">
+      <thead>
+        <tr><th>Дата</th><th>Тип</th><th>Фрагмент</th><th>Риск</th><th>Результат</th></tr>
+      </thead>
+      <tbody>
+        {% for c in recent %}
+        <tr onclick="location.href='{% url 'check-detail' c.pk %}'" style="cursor:pointer;">
+          <td>{{ c.created_at|date:'d.m.Y H:i' }}</td>
+          <td>{{ c.check_type|upper }}</td>
+          <td>
+            {% if is_admin and c.user_id != user.id %}
+              <span class="text-muted">[Текст скрыт для администратора (ФТ-1.9)]</span>
+            {% else %}
+              {{ c.input_masked|truncatechars:60 }}
+            {% endif %}
+          </td>
+          <td>{{ c.risk_score }}/100</td>
+          <td>
+            <span class="risk-badge {{ c.risk_level }}">
+              {% if c.risk_level == 'high' %}▲ Мошенническое{% elif c.risk_level == 'medium' %}◆ Подозрительное{% else %}● Безопасное{% endif %}
+            </span>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5" class="empty-state">Пока нет проверок. <a href="{% url 'check-sms' %}">Начните с анализа SMS</a>.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+{% if total > 0 %}
+<script>
+new Chart(document.getElementById('categoryChart'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Безопасные (SAFE)', 'Подозрительные (SUSPICIOUS)', 'Мошеннические (FRAUDULENT)'],
+    datasets: [{
+      data: [{{ safe_count }}, {{ suspicious_count }}, {{ fraudulent_count }}],
+      backgroundColor: ['#22a06b', '#e8a317', '#d94b55'],
+      borderWidth: 0
+    }]
+  },
+  options: {
+    cutout: '70%',
+    plugins: {
+      title: { display: true, text: 'Категории риска' },
+      legend: { display: true, position: 'bottom' }
+    }
+  }
+});
+
+new Chart(document.getElementById('dailyChart'), {
+  type: 'line',
+  data: {
+    labels: {{ day_labels|safe }},
+    datasets: [
+      { label: 'Безопасные', data: {{ day_safe_json|safe }}, borderColor: '#22a06b', tension: 0.3 },
+      { label: 'Подозрительные', data: {{ day_susp_json|safe }}, borderColor: '#e8a317', tension: 0.3 },
+      { label: 'Мошеннические', data: {{ day_fraud_json|safe }}, borderColor: '#d94b55', tension: 0.3 }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      title: { display: true, text: 'Число проверок по дням' },
+      legend: { display: true, position: 'top' }
+    },
+    scales: {
+      x: { title: { display: true, text: 'Дата' } },
+      y: { beginAtZero: true, ticks: { precision: 0 }, title: { display: true, text: 'Количество проверок' } }
+    }
+  }
+});
+
+new Chart(document.getElementById('topFeaturesChart'), {
+  type: 'bar',
+  data: {
+    labels: {{ top_features_labels|safe }},
+    datasets: [{
+      label: 'Число срабатываний',
+      data: {{ top_features_values|safe }},
+      backgroundColor: '#3978d4'
+    }]
+  },
+  options: {
+    maintainAspectRatio: false,
+    plugins: {
+      title: { display: true, text: 'Топ-5 сработавших групп признаков' },
+      legend: { display: true }
+    },
+    scales: {
+      x: { title: { display: true, text: 'Группа признаков' } },
+      y: { beginAtZero: true, ticks: { precision: 0 }, title: { display: true, text: 'Количество' } }
+    }
+  }
+});
+</script>
+{% endif %}
+{% endblock %}

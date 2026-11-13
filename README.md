@@ -1,49 +1,44 @@
-# SMS Guard — система обнаружения подозрительных SMS и URL
+# SMS Guard — интеллектуальная система обнаружения мошеннических SMS и подозрительных URL
 
-Python 3.11+, Django 5.2, Django REST Framework, scikit-learn.
+Учебный проект (дипломная/курсовая работа) на базе Django + DRF + scikit-learn для комплексной оценки риска SMS-сообщений и ссылок.
 
-## Установка и запуск
+## Возможности
+- **Анализ SMS**: классификация текста (TF-IDF + LinearSVM), rule-based детектор социальной инженерии (8 групп признаков для `ru`, `kk`, `en`), извлечение до 3 URL.
+- **Анализ URL**: извлечение 22+ лексических и структурных признаков (IP-адрес, Punycode, кириллические/смешанные домены, схожесть с брендами, сокращатели, энтропия и др.) и классификация (`RandomForest`).
+- **Скоринг риска (0–100)**: объединение $P_{\text{sms}}$, $P_{\text{url\_max}}$ и правил социальной инженерии по `risk_config.yaml` в категории `SAFE` (0–34), `SUSPICIOUS` (35–69), `FRAUDULENT`/`DANGEROUS` (70–100) с объяснением причин на русском языке.
+- **Веб-интерфейс и REST API**: авторизация, защита от перебора паролей (5 попыток -> 60с), ограничение частоты запросов (30/мин), история проверок с фильтрами и экспортом CSV, статистика, настройки приватности (`store_sms_text`) и маскирование карт/телефонов.
 
-```bash
-python -m venv .venv
-# Windows: .venv\\Scripts\\activate
-# Linux/macOS: source .venv/bin/activate
-python -m pip install -r requirements.txt
-cp .env.example .env
+## Быстрый старт (Windows PowerShell)
+
+```powershell
+# 1. Активация виртуального окружения и установка зависимостей
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+
+# 2. Миграции и демо-данные (demo_user / DemoPass123, admin_demo / AdminPass123)
 python manage.py migrate
-python manage.py check
+python manage.py seed_demo
+
+# 3. Запуск сервера
 python manage.py runserver
 ```
 
-Откройте `http://127.0.0.1:8000/`. Для Windows PowerShell используйте `copy .env.example .env`.
+## Обучение моделей (при необходимости переобучить)
 
-## Проверки и модели
-
-```bash
-python -m pytest -q
-python -m ml.sms_baseline
+```powershell
+python -m ml.data.create_custom_ru_kk
+python -m ml.data.prepare_sms
+python -m ml.data.prepare_url
 python -m ml.sms_compare
-python -m ml.train_url data/raw/url_dataset.csv --url-column url --label-column label
+python -m ml.url_model
 ```
 
-URL-модель обучается только на предоставленном реальном размеченном CSV: `0` — легитимный URL, `1` — фишинг. В репозитории URL-датасет отсутствует, поэтому `ml/artifacts/url_model.joblib` не создаётся искусственно; до обучения приложение честно показывает, что URL-модель недоступна. Не интерпретируйте это как подтверждённую классификацию URL.
-
 ## Основные маршруты
+- Веб: `/`, `/login/`, `/register/`, `/profile/`, `/check/sms/`, `/check/url/`, `/history/`, `/history/export/`, `/stats/`, `/dashboard/`
+- API: `/api/v1/health/`, `/api/v1/auth/register/`, `/api/v1/auth/login/`, `/api/v1/auth/logout/`, `/api/v1/check/sms/`, `/api/v1/check/url/`, `/api/v1/checks/`, `/api/v1/checks/<id>/`, `/api/v1/stats/summary/`
 
-- `/` — главная страница.
-- `/accounts/register/`, `/accounts/login/` — регистрация и вход.
-- `/analyze/` — анализ SMS/URL (требуется вход).
-- `/api/v1/analyze/` — POST JSON `{"text":"..."}` (требуется вход).
-- `/history/` — история текущего пользователя.
-- `/dashboard/` — статистика текущего пользователя.
-- `/api/v1/health/` — проверка работоспособности.
+## Тестирование
 
-## Структура
-
-`config/` — Django; `apps/accounts/`, `apps/analysis/`, `apps/dashboard/` — веб-приложения;
-`ml/` — предобработка, признаки, SMS- и URL-модели, правила и риск; `data/` — датасеты;
-`templates/`, `static/` — интерфейс; `tests/` — тесты; `docs/` — отчёты ТЗ.
-
-## Ограничения
-
-UCI SMS Spam Collection англоязычная, а класс spam не равен финансовому мошенничеству. Поэтому SMS-вероятность — вспомогательный сигнал, а не гарантия. URL-модель требует отдельного реального размеченного набора и оценки на отложенной выборке. Проверка не выполняет сетевые запросы к URL и не гарантирует безопасность.
+```powershell
+python -m pytest -q
+```

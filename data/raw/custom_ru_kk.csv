@@ -1,151 +1,151 @@
-id,text,label,language,annotation_author,synthetic
-ru_001,Привет! Встречаемся завтра возле библиотеки,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_002,"Ваша карта заблокирована! Подтвердите данные на https://bank-check.example Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_003,"Напоминаю, собрание группы в пятницу в 14:00 Ответьте позже.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_004,Вы выиграли приз! Оплатите комиссию 2000 тг для получения,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_005,"Спасибо за помощь с домашним заданием Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_006,Курьер не смог доставить посылку. Уточните адрес на https://parcel-check.example Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_007,"Сегодня на улице прохладно, возьми куртку",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_008,"Срочно! Родственник попал в беду. Переведите 5000 тг Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_009,"Внимание: Отчёт отправлен преподавателю, проверь почту Ответьте позже.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_010,Внимание: Служба безопасности: сообщите код из SMS для отмены операции,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_011,"Внимание: Завтра занятия начинаются в девять утра Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_012,Внимание: Госуслуги: неоплаченный штраф. Оплатите сегодня на https://fines-check.example Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_013,"Внимание: Я буду дома после обеда, созвонимся",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_014,"Внимание: Инвестиции с гарантией 200% доходности! Внесите 10000 тг Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_015,Внимание: Книга лежит на полке в кабинете Ответьте позже.,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_016,"Внимание: Ваш банковский счёт под угрозой, срочно подтвердите личность",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_017,"Сообщение: Привет! Встречаемся завтра возле библиотеки Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_018,Сообщение: Ваша карта заблокирована! Подтвердите данные на https://bank-check.example Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_019,"Сообщение: Напоминаю, собрание группы в пятницу в 14:00",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_020,"Сообщение: Вы выиграли приз! Оплатите комиссию 2000 тг для получения Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_021,Сообщение: Спасибо за помощь с домашним заданием Ответьте позже.,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_022,Сообщение: Курьер не смог доставить посылку. Уточните адрес на https://parcel-check.example,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_023,"Сообщение: Сегодня на улице прохладно, возьми куртку Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_024,Сообщение: Срочно! Родственник попал в беду. Переведите 5000 тг Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_025,"Уведомление: Отчёт отправлен преподавателю, проверь почту",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_026,"Уведомление: Служба безопасности: сообщите код из SMS для отмены операции Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_027,Уведомление: Завтра занятия начинаются в девять утра Ответьте позже.,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_028,Уведомление: Госуслуги: неоплаченный штраф. Оплатите сегодня на https://fines-check.example,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_029,"Уведомление: Я буду дома после обеда, созвонимся Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_030,Уведомление: Инвестиции с гарантией 200% доходности! Внесите 10000 тг Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_031,Уведомление: Книга лежит на полке в кабинете,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_032,"Уведомление: Ваш банковский счёт под угрозой, срочно подтвердите личность Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_033,Привет! Встречаемся завтра возле библиотеки Ответьте позже.,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_034,Ваша карта заблокирована! Подтвердите данные на https://bank-check.example,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_035,"Напоминаю, собрание группы в пятницу в 14:00 Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_036,Вы выиграли приз! Оплатите комиссию 2000 тг для получения Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_037,Спасибо за помощь с домашним заданием,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_038,"Курьер не смог доставить посылку. Уточните адрес на https://parcel-check.example Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_039,"Сегодня на улице прохладно, возьми куртку Ответьте позже.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_040,Срочно! Родственник попал в беду. Переведите 5000 тг,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_041,"Внимание: Отчёт отправлен преподавателю, проверь почту Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_042,Внимание: Служба безопасности: сообщите код из SMS для отмены операции Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_043,Внимание: Завтра занятия начинаются в девять утра,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_044,"Внимание: Госуслуги: неоплаченный штраф. Оплатите сегодня на https://fines-check.example Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_045,"Внимание: Я буду дома после обеда, созвонимся Ответьте позже.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_046,Внимание: Инвестиции с гарантией 200% доходности! Внесите 10000 тг,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_047,"Внимание: Книга лежит на полке в кабинете Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_048,"Внимание: Ваш банковский счёт под угрозой, срочно подтвердите личность Ответьте позже.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_049,Сообщение: Привет! Встречаемся завтра возле библиотеки,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_050,"Сообщение: Ваша карта заблокирована! Подтвердите данные на https://bank-check.example Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_051,"Сообщение: Напоминаю, собрание группы в пятницу в 14:00 Ответьте позже.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_052,Сообщение: Вы выиграли приз! Оплатите комиссию 2000 тг для получения,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_053,"Сообщение: Спасибо за помощь с домашним заданием Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_054,Сообщение: Курьер не смог доставить посылку. Уточните адрес на https://parcel-check.example Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_055,"Сообщение: Сегодня на улице прохладно, возьми куртку",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_056,"Сообщение: Срочно! Родственник попал в беду. Переведите 5000 тг Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_057,"Уведомление: Отчёт отправлен преподавателю, проверь почту Ответьте позже.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_058,Уведомление: Служба безопасности: сообщите код из SMS для отмены операции,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_059,"Уведомление: Завтра занятия начинаются в девять утра Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_060,Уведомление: Госуслуги: неоплаченный штраф. Оплатите сегодня на https://fines-check.example Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_061,"Уведомление: Я буду дома после обеда, созвонимся",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_062,"Уведомление: Инвестиции с гарантией 200% доходности! Внесите 10000 тг Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_063,Уведомление: Книга лежит на полке в кабинете Ответьте позже.,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_064,"Уведомление: Ваш банковский счёт под угрозой, срочно подтвердите личность",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_065,"Привет! Встречаемся завтра возле библиотеки Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_066,Ваша карта заблокирована! Подтвердите данные на https://bank-check.example Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_067,"Напоминаю, собрание группы в пятницу в 14:00",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_068,"Вы выиграли приз! Оплатите комиссию 2000 тг для получения Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_069,Спасибо за помощь с домашним заданием Ответьте позже.,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_070,Курьер не смог доставить посылку. Уточните адрес на https://parcel-check.example,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_071,"Сегодня на улице прохладно, возьми куртку Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_072,Срочно! Родственник попал в беду. Переведите 5000 тг Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_073,"Внимание: Отчёт отправлен преподавателю, проверь почту",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_074,"Внимание: Служба безопасности: сообщите код из SMS для отмены операции Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_075,Внимание: Завтра занятия начинаются в девять утра Ответьте позже.,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_076,Внимание: Госуслуги: неоплаченный штраф. Оплатите сегодня на https://fines-check.example,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_077,"Внимание: Я буду дома после обеда, созвонимся Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_078,Внимание: Инвестиции с гарантией 200% доходности! Внесите 10000 тг Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_079,Внимание: Книга лежит на полке в кабинете,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_080,"Внимание: Ваш банковский счёт под угрозой, срочно подтвердите личность Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_081,Сообщение: Привет! Встречаемся завтра возле библиотеки Ответьте позже.,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_082,Сообщение: Ваша карта заблокирована! Подтвердите данные на https://bank-check.example,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_083,"Сообщение: Напоминаю, собрание группы в пятницу в 14:00 Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_084,Сообщение: Вы выиграли приз! Оплатите комиссию 2000 тг для получения Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_085,Сообщение: Спасибо за помощь с домашним заданием,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_086,"Сообщение: Курьер не смог доставить посылку. Уточните адрес на https://parcel-check.example Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_087,"Сообщение: Сегодня на улице прохладно, возьми куртку Ответьте позже.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_088,Сообщение: Срочно! Родственник попал в беду. Переведите 5000 тг,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_089,"Уведомление: Отчёт отправлен преподавателю, проверь почту Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_090,Уведомление: Служба безопасности: сообщите код из SMS для отмены операции Ответьте позже.,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_091,Уведомление: Завтра занятия начинаются в девять утра,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_092,"Уведомление: Госуслуги: неоплаченный штраф. Оплатите сегодня на https://fines-check.example Пожалуйста, проверьте.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_093,"Уведомление: Я буду дома после обеда, созвонимся Ответьте позже.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_094,Уведомление: Инвестиции с гарантией 200% доходности! Внесите 10000 тг,1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_095,"Уведомление: Книга лежит на полке в кабинете Пожалуйста, проверьте.",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_096,"Уведомление: Ваш банковский счёт под угрозой, срочно подтвердите личность Ответьте позже.",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_097,"Заберу тебя после работы, подожди у входа",0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_098,"Служба безопасности: по вашему счёту найдена подозрительная операция, перейдите на https://secure-account.example",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_099,Не забудь взять тетради на завтрашнее занятие,0,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-ru_100,"Поздравляем! Вам начислен бонус, для получения сообщите код из SMS",1,ru,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_001,Сәлем! Ертең кітапханада кездесеміз,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_002,Банк картаңыз бұғатталды! Дереу https://bank-check.example арқылы растаңыз Тексеріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_003,Жұма күні сағат екіде жиналыс болады Кейін жауап беріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_004,Сіз жүлде ұттыңыз! 2000 тг төлем жіберіңіз,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_005,Үй тапсырмасына көмектескеніңе рақмет Тексеріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_006,Сәлемдемеңіз жеткізілмеді. https://parcel-check.example сілтемесін ашыңыз Кейін жауап беріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_007,"Бүгін ауа райы салқын, күртеңді ал",0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_008,Туысыңыз қиындыққа тап болды! 5000 тг аударыңыз Тексеріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_009,Назар аударыңыз: Мұғалімге есеп жіберілді Кейін жауап беріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_010,Назар аударыңыз: Қауіпсіздік қызметі: SMS кодын дереу хабарлаңыз,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_011,Назар аударыңыз: Ертең сабақ тоғызда басталады Тексеріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_012,Назар аударыңыз: Мемлекеттік айыппұлды бүгін https://fines-check.example арқылы төлеңіз Кейін жауап беріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_013,Назар аударыңыз: Түстен кейін үйде боламын,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_014,Назар аударыңыз: Инвестициядан 200% пайда кепілдендірілген! Тексеріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_015,Назар аударыңыз: Кітап сөренің үстінде жатыр Кейін жауап беріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_016,"Назар аударыңыз: Шотыңызға қауіп төніп тұр, жеке деректерді енгізіңіз",1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_017,Хабарлама: Сәлем! Ертең кітапханада кездесеміз Тексеріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_018,Хабарлама: Банк картаңыз бұғатталды! Дереу https://bank-check.example арқылы растаңыз Кейін жауап беріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_019,Хабарлама: Жұма күні сағат екіде жиналыс болады,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_020,Хабарлама: Сіз жүлде ұттыңыз! 2000 тг төлем жіберіңіз Тексеріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_021,Хабарлама: Үй тапсырмасына көмектескеніңе рақмет Кейін жауап беріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_022,Хабарлама: Сәлемдемеңіз жеткізілмеді. https://parcel-check.example сілтемесін ашыңыз,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_023,"Хабарлама: Бүгін ауа райы салқын, күртеңді ал Тексеріңіз.",0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_024,Хабарлама: Туысыңыз қиындыққа тап болды! 5000 тг аударыңыз Кейін жауап беріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_025,Ескерту: Мұғалімге есеп жіберілді,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_026,Ескерту: Қауіпсіздік қызметі: SMS кодын дереу хабарлаңыз Тексеріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_027,Ескерту: Ертең сабақ тоғызда басталады Кейін жауап беріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_028,Ескерту: Мемлекеттік айыппұлды бүгін https://fines-check.example арқылы төлеңіз,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_029,Ескерту: Түстен кейін үйде боламын Тексеріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_030,Ескерту: Инвестициядан 200% пайда кепілдендірілген! Кейін жауап беріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_031,Ескерту: Кітап сөренің үстінде жатыр,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_032,"Ескерту: Шотыңызға қауіп төніп тұр, жеке деректерді енгізіңіз Тексеріңіз.",1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_033,Сәлем! Ертең кітапханада кездесеміз Кейін жауап беріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_034,Банк картаңыз бұғатталды! Дереу https://bank-check.example арқылы растаңыз,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_035,Жұма күні сағат екіде жиналыс болады Тексеріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_036,Сіз жүлде ұттыңыз! 2000 тг төлем жіберіңіз Кейін жауап беріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_037,Үй тапсырмасына көмектескеніңе рақмет,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_038,Сәлемдемеңіз жеткізілмеді. https://parcel-check.example сілтемесін ашыңыз Тексеріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_039,"Бүгін ауа райы салқын, күртеңді ал Кейін жауап беріңіз.",0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_040,Туысыңыз қиындыққа тап болды! 5000 тг аударыңыз,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_041,Назар аударыңыз: Мұғалімге есеп жіберілді Тексеріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_042,Назар аударыңыз: Қауіпсіздік қызметі: SMS кодын дереу хабарлаңыз Кейін жауап беріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_043,Назар аударыңыз: Ертең сабақ тоғызда басталады,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_044,Назар аударыңыз: Мемлекеттік айыппұлды бүгін https://fines-check.example арқылы төлеңіз Тексеріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_045,Назар аударыңыз: Түстен кейін үйде боламын Кейін жауап беріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_046,Назар аударыңыз: Инвестициядан 200% пайда кепілдендірілген!,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_047,Назар аударыңыз: Кітап сөренің үстінде жатыр Тексеріңіз.,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_048,"Назар аударыңыз: Шотыңызға қауіп төніп тұр, жеке деректерді енгізіңіз Кейін жауап беріңіз.",1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_049,Хабарлама: Сәлем! Ертең кітапханада кездесеміз,0,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
-kk_050,Хабарлама: Банк картаңыз бұғатталды! Дереу https://bank-check.example арқылы растаңыз Тексеріңіз.,1,kk,"Synthetic template author: project team (generated, manually review before evaluation)",True
+id,text,label,language,annotation_author
+ru_safe_001,Привет! Встречаемся завтра в 18:00 у входа в библиотеку.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_002,"Мама, я буду дома через полчаса, купила хлеб и молоко.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_003,Напоминание: лекция по машинному обучению перенесена в аудиторию 305.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_004,Ваш заказ №4821 собран и ожидает выдачи в пункте самовывоза на Абая.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_005,"Дима, скинь, пожалуйста, конспект по базам данных до вечера.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_006,Запись к врачу-терапевту подтверждена на пятницу в 10:30.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_007,"Сегодня тренировка в спортзале отменяется, тренер заболел.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_008,Поздравляю с днём рождения! Желаю крепкого здоровья и успехов в учёбе!,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_009,"Коллеги, планерка начнётся в 09:15 в переговорной комнате на третьем этаже.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_010,"Мы уже приехали на вокзал, ждём тебя возле главного табло.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_011,"Алия, не забудь взять зарядку для ноутбука и студенческий билет.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_012,"Такси подъехало к первому подъезду, серая Toyota, выходите.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_013,"Курьер доставит пиццу примерно через 25 минут, приятного аппетита.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_014,Расписание экзаменов опубликовано на стенде деканата факультета.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_015,"Я задержусь на работе на час, начинайте ужинать без меня.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_016,"Погода сегодня отличная, пойдём вечером гулять в парк Горького?",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_017,"Твоя посылка прибыла в отделение почты, возьми удостоверение личности.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_018,Собрание жильцов дома состоится в субботу в 12:00 во дворе.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_019,"Фильм начинается в 19:40, я уже купил билеты в седьмом ряду.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_020,"Спасибо за помощь с курсовой работой, защита прошла отлично!",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_021,"Карина, ты идёшь сегодня на пару по английскому языку?",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_022,Не забудь покормить кота и полить цветы на подоконнике.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_023,"Автобус задерживается в пробке на проспекте Достык, буду через 15 минут.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_024,"Завтра субботник в университете, сбор у главного корпуса в 09:00.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_025,Я оставил ключи от квартиры у соседа со второго этажа.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_026,"Бабушка передала домашнее варенье, зайди вечером забрать банку.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_027,Подписка на музыкальный сервис продлена на следующий месяц.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_028,Внимание: завтра с 10:00 до 14:00 плановое отключение холодной воды.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_029,Скидки до 20 процентов на книги в университетском магазине всю неделю.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_030,Давай встретимся в кофейне на углу после третьей пары.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_031,"Отчёт по лабораторной работе принят преподавателем, оценка отлично.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_032,"Пожалуйста, купи по дороге домой пачку чая и лимон.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_033,"Ремонт ноутбука завершён, можете забрать устройство из сервисного центра.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_034,Библиотека напоминает о необходимости вернуть книги до конца месяца.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_035,Встреча выпускников запланирована на первую субботу июня в ресторане.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_036,"Я сдал зачёт по программированию с первого раза, ура!",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_037,"Поезд отправляется с четвёртого пути, посадка уже началась.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_038,Урок вождения перенесли на четверг в 16:00 по просьбе инструктора.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_039,"Пришли мне фотографию расписания со стенда, пожалуйста.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_040,"Завтра контрольная работа по статистике, повтори формулы вероятности.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_041,Мы забронировали столик на четверых на имя Руслана в 20:00.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_042,Абонемент в бассейн действует до двадцатого числа этого месяца.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_043,"Собака опять спрятала тапочки, ищи под диваном в гостиной.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_044,"На улице сильный ветер и дождь, обязательно возьми зонтик.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_045,Семинар по информационной безопасности пройдёт в онлайн-формате.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_046,"Я приготовила плов на обед, разогрей себе на плите.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_047,Квитанция за коммунальные услуги лежит в почтовом ящике.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_048,"Приходи к нам в субботу смотреть футбольный матч, будут все ребята.",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_049,Консультация перед защитой диплома назначена на вторник в 15:00.,0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_safe_050,"Спокойной ночи, до встречи завтра утром в университете!",0,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_001,Ваша карта заблокирована! Срочно подтвердите данные по ссылке: http://secure-bank-verify.example/login,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_002,Служба безопасности банка: зафиксирован подозрительный вход. Срочно назовите код из SMS для отмены операции.,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_003,Поздравляем! Вы выиграли приз 500 000 тг! Получите выигрыш сейчас: https://prize-claim-kz.test/win,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_004,"Мама, у меня проблемы с полицией, срочно переведите деньги 50 000 тг на этот счёт, никому не говорите!",1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_005,Ваш аккаунт будет заблокирован в течение 24 часов. Подтвердите пароль на https://account-check.example/verify,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_006,Внимание! Оплатите таможенную комиссию 1500 тг для доставки посылки: http://post-delivery-pay.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_007,Нацбанк уведомляет: ваш банковский счёт заморожен. Немедленно сообщите код и номер карты оператору.,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_008,Вам начислен бонус 100 000 руб! Срочно введите данные карты и cvv для получения: https://bonus-card.test,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_009,Подозрительный перевод с вашей карты! Для отмены срочно сообщите одноразовый пароль из SMS.,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_010,Вы стали победителем розыгрыша! Оплатите комиссию 3000 тг и получите приз: http://lucky-winner.invalid,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_011,Служба безопасности: попытка оформления кредита. Срочно переведите средства на безопасный счёт!,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_012,Ваш счёт заблокирован из-за неоплаченного штрафа. Оплатите немедленно: https://gov-fine-pay.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_013,Последний шанс получить выплату 250 000 тг от государства! Введите данные карты: http://social-pay.test,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_014,"Немедленно подтвердите личность, иначе доступ к интернет-банкингу будет закрыт: https://bank-auth.example",1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_015,Срочно! С вашей карты списывается 85 000 тг. Назовите код подтверждения для блокировки транзакции.,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_016,Налоговая служба: у вас задолженность. Срочно оплатите перевод по ссылке http://tax-pay-kz.test,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_017,Вы выиграли смартфон в акции! Для доставки оплатите пошлину 2000 тг: https://free-gift.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_018,Ваш личный кабинет взломан! Срочно смените пароль и введите номер карты: http://cabinet-restore.test,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_019,"Действуйте сейчас! Инвестиционный бонус $1000 ждёт вас, переведите деньги для активации счёта.",1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_020,"Полиция: ваш родственник попал в ДТП. Срочно сделайте перевод 100 000 тг следователю, это строго конфиденциально.",1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_021,Карта заблокирована системой безопасности. Введите срок действия карты и cvc на https://card-unlock.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_022,Срочно подтвердите перевод 45 000 руб или отмените его по ссылке: http://cancel-transfer.test/auth,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_023,Вам одобрена компенсация 180 000 тг! Оплатите комиссию банка для зачисления: https://comp-pay.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_024,Подозрительный вход с нового устройства! Немедленно сообщите код из SMS сотруднику службы безопасности.,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_025,Ваша посылка задержана на складе. Срочно оплатите сбор 950 тг по ссылке: http://delivery-customs.test,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_026,Уведомление от банка: действие вашей карты приостановлено. Срочно введите пин-код на https://pin-check.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_027,Вы стали победителем лотереи! Заберите денежный приз $500 прямо сейчас: http://lotto-prize.test,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_028,Срочно! Для сохранения сбережений переведите деньги на резервный счёт Нацбанка в течение 24 часов.,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_029,Доступ к аккаунту ограничен. Подтвердите данные карты и одноразовый пароль: https://verify-user.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_030,Вам положена социальная выплата 120 000 тг. Срочно заполните номер карты: http://kaz-benefit.test,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_031,Служба безопасности: зафиксирована кража средств. Назовите код из SMS и никому не сообщайте о звонке.,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_032,"Срочно погасите задолженность по кредиту, иначе имущество будет арестовано: https://debt-pay.example",1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_033,"Поздравляем, вам открыт призовой счёт на 300 000 тг! Оплатите комиссию за вывод: http://withdraw-prize.test",1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_034,Ваша банковская карта будет заблокирована сегодня. Немедленно пройдите проверку: https://card-secure.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_035,Срочно сделайте перевод 20 000 тг для разблокировки финансового счёта: http://unblock-account.test,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_036,Попытка смены номера телефона в банке! Срочно сообщите код отмены из SMS нашему специалисту.,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_037,Вы выиграли путёвку! Оплатите сервисный сбор 4000 тг в течение 24 часов: https://travel-prize.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_038,Ваша учётная запись заблокирована за нарушение правил. Разблокируйте платно: http://unlock-profile.test,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_039,Служба доставки: адрес не указан. Срочно введите данные карты для повторной отправки: https://re-delivery.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_040,Немедленно верните средства или подтвердите операцию кодом из SMS: http://confirm-op.test,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_041,На ваш счёт поступил перевод $2000. Для зачисления оплатите налог 5000 тг: https://incoming-transfer.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_042,"Срочно! Ваша зарплатная карта заблокирована, введите номер карты и cvv по ссылке: http://salary-card.test",1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_043,"Инвестиционная платформа: ваш доход составил 450 000 тг, срочно оплатите комиссию брокера для вывода.",1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_044,Банк предупреждает: счёт заблокирован. Немедленно назовите одноразовый пароль для верификации клиента.,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_045,Последний шанс забрать выигрыш 70 000 руб! Перейдите по ссылке и введите данные карты: https://fast-win.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_046,Служба безопасности выявила мошенническую операцию. Срочно переведите деньги на защищённый счёт!,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_047,Штраф за нарушение ПДД: оплатите со скидкой в течение 24 часов по ссылке http://traffic-fine.test,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_048,Ваш электронный кошелёк заблокирован! Срочно сообщите код из SMS для восстановления доступа.,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_049,Получите приз от партнёров банка! Введите данные карты на странице акции: https://partner-gift.example,1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+ru_fraud_050,"Экстренное сообщение: карта заблокирована, срочно перейдите на http://emergency-bank.test и введите пароль.",1,ru,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_001,Сәлем! Ертең сағат 10:00-де университет кітапханасының алдында кездесеміз бе?,0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_002,"Анашым, мен сабақтан шықтым, үйге жарты сағатта жетемін, нан алдым.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_003,Ескерту: бүгінгі математика дәрісі үшінші қабаттағы дәрісханаға ауыстырылды.,0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_004,"Сіздің тапсырысыңыз дайын, оны Абай даңғылындағы бөлімшеден алып кетуге болады.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_005,"Достым, маған деректер қоры пәнінен лекция жазбаларын жіберші, өтінемін.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_006,Дәрігерге жазылуыңыз жұма күні сағат 11:30-ға сәтті расталды.,0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_007,"Бүгін спорт залдағы жаттығу болмайды, бапкер ауырып қалды.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_008,"Туған күніңмен құттықтаймын! Зор денсаулық, оқуда табыс және бақыт тілеймін!",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_009,"Әріптестер, жиналыс таңертең сағат 09:30-да мәжіліс залында басталады.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_010,"Біз вокзалға келдік, сені негізгі кіреберістің жанында күтіп тұрмыз.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_011,"Айгүл, ноутбуктің қуаттағышын және студенттік билетіңді ұмытпай алып шық.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_012,"Такси бірінші подъезге келіп тұр, ақ түсті көлік, шыға беріңіздер.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_013,"Курьер тамақты жиырма минуттан кейін жеткізеді, астарыңыз дәмді болсын.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_014,Емтихан кестесі факультет деканатының тақтасында ілініп тұр.,0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_015,"Мен жұмыста бір сағатқа бөгелемін, кешкі асты менсіз іше беріңіздер.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_016,"Бүгін ауа райы тамаша екен, кешке саябаққа серуендеуге барайық па?",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_017,"Сіздің сәлемдемеңіз пошта бөлімшесіне келді, жеке куәлігіңізді алып келіңіз.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_018,Үй тұрғындарының жиналысы сенбі күні сағат 12:00-де аулада өтеді.,0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_019,"Кино сағат 19:00-де басталады, мен бесінші қатардан билет сатып алдым.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_020,"Курстық жұмысқа көмектескенің үшін көп рақмет, қорғау өте жақсы өтті!",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_021,"Ерлан, сен бүгін ағылшын тілі сабағына барасың ба?",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_022,Мысыққа тамақ беруді және терезедегі гүлдерге су құюды ұмытпа.,0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_023,"Автобус кептелісте тұр, мен шамамен он бес минуттан соң келемін.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_024,"Ертең университетте сенбілік болады, жиналу бас ғимараттың алдында.",0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_safe_025,Мен пәтердің кілтін екінші қабаттағы көршіге қалдырып кеттім.,0,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_001,Картаңыз бұғатталды! Жедел түрде мына сілтеме арқылы растаңыз: http://bank-kz-verify.test,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_002,Қауіпсіздік қызметі: шотыңызда күдікті операция анықталды. Шұғыл sms кодын беріңіз!,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_003,Құттықтаймыз! Сіз 500 000 тг сыйлық ұттыңыз! Жүлде алыңыз: https://utys-kz.example/claim,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_004,"Шұғыл! Балаңыз полицияға түсті, тез арада 100 000 тг ақша аударыңыз, ешкімге айтпаңыз!",1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_005,Сіздің аккаунт бұғатталды. Тез арада құпиясөзді жіберіңіз: https://kabinet-kz.test/login,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_006,Сәлемдемені алу үшін 1200 тг кедендік комиссия төлеңіз: http://kazpost-pay.example,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_007,Ұлттық банк ескертеді: шотыңыз бұғатталды! Дереу карта деректері мен кодты айтыңыз.,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_008,Сіз ұтып алдыңыз! 200 000 тг бонус алу үшін карта нөмірі мен cvv енгізіңіз: http://bonus-kz.test,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_009,Картаңыздан ақша шешіліп жатыр! Операцияны тоқтату үшін дереу растау кодын жіберіңіз.,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_010,Ұтыс жеңімпазы атандыңыз! Сыйлықты алу үшін 2500 тг төлем жасаңыз: https://prize-kz.invalid,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_011,Қауіпсіздік қызметі: атыңызға несие рәсімделуде. Шұғыл ақшаны қауіпсіз шотқа аударым жасаңыз!,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_012,Салық комитеті: сізде қарыз бар. Тез арада мына сілтемемен төлем жасаңыз: http://salyk-pay.test,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_013,"Банк картасы шектелді! Дереу сілтемеге өтіп, карта нөмірі мен құпиясөзді енгізіңіз: https://halyk-check.example",1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_014,"Шұғыл хабарлама! Кіру шектелді, аккаунтты қалпына келтіру үшін sms кодын беріңіз: http://restore-kz.test",1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_015,Сізге мемлекеттік жәрдемақы 150 000 тг тағайындалды! Тез арада карта деректерін толтырыңыз: https://komek-kz.example,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_016,"Полициядан хабарласып тұрмыз: істі жабу үшін дереу 80 000 тг аударым жасаңыз, құпия сақтаңыз.",1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_017,Бүгін аяқталады! Жүлде қорынан 300 000 тг алу үшін комиссия төлеңіз: http://juldiz-win.test,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_018,"Шотыңыз бұғатталды, тез арада банк картасы нөмірін мына парақшада растаңыз: https://kaspi-verify.example",1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_019,Күдікті аударым! Қаражатты сақтау үшін дереу растау кодын жіберіңіз және операторға кодты айтыңыз.,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_020,Сіз смартфон ұтып алдыңыз! Жеткізу ақысын 1800 тг шұғыл төлем жасаңыз: http://gift-kz.test,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_021,Ұлттық банк: жинақтарыңызды қорғау үшін тез арада резервтік шотқа ақша аударыңыз!,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_022,Жеке кабинетке бөтен кіру тіркелді! Дереу құпиясөзді жіберіңіз: https://auth-kz.example/verify,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_023,Сәлемдемеңіз қоймада ұсталды. Тез арада 900 тг комиссия төлеңіз: http://package-kz.test,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_024,Картаңыз бұғатталды! Шұғыл түрде карта деректері мен пин-кодты растаңыз: https://card-kz.example,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"
+kk_fraud_025,Сіз лотереядан $1000 ұтып алдыңыз! Дереу сілтеме арқылы жүлде алыңыз: http://lotto-kz.test,1,kk,"Руслан (студент, ручная разметка искусственных примеров)"

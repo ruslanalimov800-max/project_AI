@@ -1,0 +1,28 @@
+@startuml
+title Activity Diagram: Проверка SMS-сообщения
+start
+:Пользователь вводит текст SMS;
+:Валидация (1..1000 символов, без управляющих байтов);
+if (Валидно?) then (Нет)
+  :Вернуть ошибку 400 VALIDATION_ERROR;
+  stop
+else (Да)
+endif
+:Определение языка (ru / kk / en);
+:Извлечение до 3 URL;
+fork
+  :ML-классификация текста (LinearSVM -> P_sms);
+fork again
+  :Rule-based детектор (8 групп соц. инженерии);
+fork again
+  if (Найдены URL?) then (Да)
+    :Извлечение 22+ признаков URL и RandomForest -> P_url_max;
+  else (Нет)
+    :P_url_max = None;
+  endif
+end fork
+:Расчёт Risk Score (0..100) и категории по risk_config.yaml;
+:Маскирование карт/телефонов и сохранение в БД (учёт store_sms_text);
+:Вывод категории, Risk Score, причин и рекомендаций;
+stop
+@enduml

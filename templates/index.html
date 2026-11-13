@@ -1,3 +1,19 @@
-{% extends "base.html" %}{% block content %}
-<div class="p-5 mb-4 bg-light rounded-3"><h1>SMS Guard</h1><p class="lead">Проверка SMS и ссылок на признаки мошенничества и социальной инженерии.</p><a class="btn btn-primary" href="/analyze/">Перейти к анализу</a></div>
+{% extends "base.html" %}
+{% block title %}SMS Guard — обнаружение мошеннических SMS и фишинговых ссылок{% endblock %}
+{% block content %}
+<section class="auth-card" style="max-width: 560px;">
+  <div class="auth-logo">
+    <span class="brand-mark">S</span>
+    <h1>SMS Guard</h1>
+    <p>Интеллектуальная система обнаружения мошеннических SMS и подозрительных ссылок</p>
+  </div>
+  <p class="text-secondary mb-4">
+    Система анализирует входящие текстовые сообщения и интернет-ссылки двумя обученными ML-моделями,
+    выявляет признаки социальной инженерии, рассчитывает уровень риска (0–100) и объясняет результат.
+  </p>
+  <div class="d-grid gap-2">
+    <a class="btn btn-primary" href="{% url 'login' %}">Войти в систему</a>
+    <a class="btn btn-light" href="{% url 'register' %}">Создать учётную запись</a>
+  </div>
+</section>
 {% endblock %}

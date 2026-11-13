@@ -15,7 +15,7 @@ def test_home_page_uses_bootstrap5_and_navigation(client):
 def test_health_endpoint(client):
     response = client.get('/api/v1/health/')
     assert response.status_code == 200
-    assert response.json() == {'status': 'ok'}
+    assert response.json()["status"] == "ok"
 
 
 def test_installed_apps_follow_structure():

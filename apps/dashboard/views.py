@@ -1,26 +1,26 @@
 import json
-from datetime import timedelta
 from django.contrib.auth.decorators import login_required
-from django.db.models import Count
 from django.shortcuts import render
-from django.utils import timezone
-from apps.analysis.models import Check
+from apps.analysis.views import compute_dashboard_summary
+
 
 @login_required
 def dashboard(request):
-    qs = Check.objects.filter(user=request.user)
-    total = qs.count()
-    safe_count = qs.filter(risk_level="low").count()
-    suspicious_count = qs.filter(risk_level="medium").count()
-    fraudulent_count = qs.filter(risk_level="high").count()
-    today = timezone.localdate()
-    start = today - timedelta(days=29)
-    daily = qs.filter(created_at__date__gte=start).values("created_at__date").annotate(count=Count("id"))
-    daily_map = {str(row["created_at__date"]): row["count"] for row in daily}
-    days = [start + timedelta(days=i) for i in range(30)]
-    recent = qs.order_by("-created_at")[:10]
+    try:
+        days = int(request.GET.get("days", 30))
+    except ValueError:
+        days = 30
+    summary = compute_dashboard_summary(request.user, days_period=days)
+    recent = summary["recent_checks"]
     return render(request, "dashboard.html", {
-        "total": total, "safe_count": safe_count, "suspicious_count": suspicious_count,
-        "fraudulent_count": fraudulent_count, "day_labels": json.dumps([d.strftime("%d.%m") for d in days]),
-        "day_values": json.dumps([daily_map.get(str(d), 0) for d in days]), "recent": recent, "active": "dashboard"
+        **summary,
+        "recent": recent,
+        "day_labels": json.dumps(summary["day_labels"], ensure_ascii=False),
+        "day_values": json.dumps(summary["day_values"]),
+        "day_safe_json": json.dumps(summary["day_safe"]),
+        "day_susp_json": json.dumps(summary["day_suspicious"]),
+        "day_fraud_json": json.dumps(summary["day_fraudulent"]),
+        "top_features_labels": json.dumps([f["group"] for f in summary["top_features"]], ensure_ascii=False),
+        "top_features_values": json.dumps([f["count"] for f in summary["top_features"]]),
+        "active": "dashboard",
     })

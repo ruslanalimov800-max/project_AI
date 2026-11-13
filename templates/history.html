@@ -1,1 +1,113 @@
-{% extends 'base.html' %}{% block title %}История · SMS Guard{% endblock %}{% block content %}<div class="page-heading"><div><span class="eyebrow">ЖУРНАЛ СОБЫТИЙ</span><h1>История проверок</h1><p>Все ваши предыдущие результаты анализа</p></div></div><section class="panel filters-panel"><form method="get" class="filters-grid"><div><label>С даты</label><input class="form-control" type="date" name="date_from" value="{{ filters.date_from }}"></div><div><label>По дату</label><input class="form-control" type="date" name="date_to" value="{{ filters.date_to }}"></div><div><label>Тип</label><select class="form-select" name="type"><option value="">Все типы</option><option value="sms" {% if filters.type == 'sms' %}selected{% endif %}>SMS</option><option value="url" {% if filters.type == 'url' %}selected{% endif %}>URL</option></select></div><div><label>Категория</label><select class="form-select" name="category"><option value="">Все категории</option>{% for value,label in categories %}<option value="{{ value }}" {% if filters.category == value %}selected{% endif %}>{{ label }}</option>{% endfor %}</select></div><div><label>Уровень риска</label><select class="form-select" name="risk"><option value="">Любой</option><option value="low" {% if filters.risk == 'low' %}selected{% endif %}>Низкий</option><option value="medium" {% if filters.risk == 'medium' %}selected{% endif %}>Средний</option><option value="high" {% if filters.risk == 'high' %}selected{% endif %}>Высокий</option></select></div><button class="btn btn-primary">Применить</button></form></section><section class="panel"><div class="table-responsive"><table class="table app-table"><thead><tr><th>Дата</th><th>Тип</th><th>Фрагмент</th><th>Категория</th><th>Risk Score</th><th>Результат</th></tr></thead><tbody>{% for c in page_obj %}<tr onclick="location.href='{% url 'check-detail' c.pk %}'"><td>{{ c.created_at|date:'d.m.Y H:i' }}</td><td>{{ c.check_type|upper }}</td><td>{{ c.input_masked|truncatechars:60 }}</td><td>{{ c.get_category_display|default:c.category }}</td><td>{{ c.risk_score }}/100</td><td><span class="risk-badge {{ c.risk_level }}">{{ c.get_risk_level_display }}</span></td></tr>{% empty %}<tr><td colspan="6" class="empty-state">По заданным фильтрам проверок нет.</td></tr>{% endfor %}</tbody></table></div><div class="pagination-row"><span>Найдено: {{ page_obj.paginator.count }}</span><div>{% if page_obj.has_previous %}<a href="?{{ query_string }}&page={{ page_obj.previous_page_number }}">← Назад</a>{% endif %}<span>Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>{% if page_obj.has_next %}<a href="?{{ query_string }}&page={{ page_obj.next_page_number }}">Вперёд →</a>{% endif %}</div></div></section>{% endblock %}
+{% extends 'base.html' %}
+{% block title %}История проверок · SMS Guard{% endblock %}
+{% block content %}
+<div class="page-heading">
+  <div>
+    <span class="eyebrow">ЖУРНАЛ ПРОВЕРОК</span>
+    <h1>История проверок</h1>
+    <p>Персональный архив результатов анализа SMS и URL (по 20 записей на странице)</p>
+  </div>
+  <a class="btn btn-outline-primary btn-sm" href="{% url 'history-export' %}?{{ query_string }}">⬇ Экспорт в CSV</a>
+</div>
+
+<section class="panel mb-3">
+  <form method="get" class="filter-bar">
+    <div>
+      <label class="form-label small mb-1">С даты</label>
+      <input class="form-control" type="date" name="date_from" value="{{ filters.date_from }}">
+    </div>
+    <div>
+      <label class="form-label small mb-1">По дату</label>
+      <input class="form-control" type="date" name="date_to" value="{{ filters.date_to }}">
+    </div>
+    <div>
+      <label class="form-label small mb-1">Тип</label>
+      <select class="form-select" name="type">
+        <option value="">Все типы</option>
+        <option value="sms" {% if filters.type == 'sms' %}selected{% endif %}>SMS</option>
+        <option value="url" {% if filters.type == 'url' %}selected{% endif %}>URL</option>
+      </select>
+    </div>
+    <div>
+      <label class="form-label small mb-1">Категория</label>
+      <select class="form-select" name="category">
+        <option value="">Все категории</option>
+        {% for value, label in categories %}
+        <option value="{{ value }}" {% if filters.category == value %}selected{% endif %}>{{ label }} ({{ value }})</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div>
+      <label class="form-label small mb-1">Уровень риска</label>
+      <select class="form-select" name="risk">
+        <option value="">Любой</option>
+        <option value="low" {% if filters.risk == 'low' %}selected{% endif %}>Низкий</option>
+        <option value="medium" {% if filters.risk == 'medium' %}selected{% endif %}>Средний</option>
+        <option value="high" {% if filters.risk == 'high' %}selected{% endif %}>Высокий</option>
+      </select>
+    </div>
+    <button class="btn btn-primary align-self-end" type="submit">Применить</button>
+  </form>
+</section>
+
+<section class="panel">
+  <div class="table-responsive">
+    <table class="table app-table">
+      <thead>
+        <tr>
+          <th>Дата</th>
+          <th>Тип</th>
+          <th>Фрагмент (до 60 симв.)</th>
+          <th>Категория</th>
+          <th>Risk Score</th>
+          <th>Уровень риска</th>
+          <th>Действия</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for c in page_obj %}
+        <tr>
+          <td onclick="location.href='{% url 'check-detail' c.pk %}'" style="cursor:pointer;">{{ c.created_at|date:'d.m.Y H:i' }}</td>
+          <td onclick="location.href='{% url 'check-detail' c.pk %}'" style="cursor:pointer;">{{ c.check_type|upper }}</td>
+          <td onclick="location.href='{% url 'check-detail' c.pk %}'" style="cursor:pointer;">{{ c.input_masked|truncatechars:60 }}</td>
+          <td onclick="location.href='{% url 'check-detail' c.pk %}'" style="cursor:pointer;">{{ c.get_category_display|default:c.category }}</td>
+          <td onclick="location.href='{% url 'check-detail' c.pk %}'" style="cursor:pointer;"><strong>{{ c.risk_score }}</strong>/100</td>
+          <td onclick="location.href='{% url 'check-detail' c.pk %}'" style="cursor:pointer;">
+            <span class="risk-badge {{ c.risk_level }}">
+              {% if c.risk_level == 'high' %}▲ Высокий{% elif c.risk_level == 'medium' %}◆ Средний{% else %}● Низкий{% endif %}
+            </span>
+          </td>
+          <td>
+            <div class="d-flex gap-2">
+              <a class="btn btn-sm btn-outline-secondary" href="{% url 'check-detail' c.pk %}">Открыть</a>
+              <form method="post" action="{% url 'check-detail' c.pk %}" onsubmit="return confirm('Удалить запись проверки №{{ c.pk }}?');">
+                {% csrf_token %}
+                <input type="hidden" name="action" value="delete">
+                <button type="submit" class="btn btn-sm btn-outline-danger">✕</button>
+              </form>
+            </div>
+          </td>
+        </tr>
+        {% empty %}
+        <tr>
+          <td colspan="7" class="empty-state">По заданным фильтрам проверок нет.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="pagination-row">
+    <span>Показано на странице: {{ page_obj|length }} · Всего найдено: {{ page_obj.paginator.count }}</span>
+    <div>
+      {% if page_obj.has_previous %}
+        <a href="?{{ query_string }}&page={{ page_obj.previous_page_number }}">← Назад</a>
+      {% endif %}
+      <span class="mx-2">Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}</span>
+      {% if page_obj.has_next %}
+        <a href="?{{ query_string }}&page={{ page_obj.next_page_number }}">Вперёд →</a>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock %}

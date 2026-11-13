@@ -103,3 +103,15 @@ LOGGING = {
 LOGIN_URL = "/accounts/login/"
 LOGIN_REDIRECT_URL = "/analyze/"
 LOGOUT_REDIRECT_URL = "/"
+
+# Безопасность cookie сессии и CSRF (ФТ-1.8)
+SESSION_COOKIE_HTTPONLY = True
+SESSION_COOKIE_SAMESITE = "Lax"
+SESSION_COOKIE_SECURE = not DEBUG
+CSRF_COOKIE_SAMESITE = "Lax"
+CSRF_COOKIE_SECURE = not DEBUG
+
+# Валидаторы паролей (ФТ-1.1)
+AUTH_PASSWORD_VALIDATORS = [
+    {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator", "OPTIONS": {"min_length": 8}},
+]

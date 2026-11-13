@@ -1,0 +1,302 @@
+{
+  "model_type": "url",
+  "version": "1.0.0",
+  "algorithm": "RandomForest",
+  "best_params": {
+    "max_depth": 16,
+    "min_samples_leaf": 2,
+    "n_estimators": 150
+  },
+  "threshold": 0.6,
+  "thresholds": {
+    "t1_suspicious": 0.35,
+    "t2_dangerous": 0.6
+  },
+  "trained_at": "2026-11-13T12:11:51.070387+00:00",
+  "feature_set": [
+    "url_length",
+    "host_length",
+    "path_length",
+    "dot_count",
+    "subdomain_count",
+    "domain_hyphen_count",
+    "digit_count",
+    "domain_digit_ratio",
+    "special_char_count",
+    "has_ip",
+    "https",
+    "non_standard_port",
+    "has_at",
+    "double_slash_in_path",
+    "has_shortener",
+    "suspicious_word_count",
+    "has_punycode",
+    "mixed_alphabet",
+    "brand_spoof",
+    "domain_entropy",
+    "suspicious_tld",
+    "query_param_count"
+  ],
+  "validation_metrics": {
+    "threshold": 0.65,
+    "accuracy": 0.7812,
+    "precision": 0.8599,
+    "recall": 0.5741,
+    "f1": 0.6885,
+    "f1_macro": 0.76,
+    "f2": 0.615,
+    "roc_auc": 0.87,
+    "pr_auc": 0.8559,
+    "confusion_matrix": [
+      [
+        5178,
+        378
+      ],
+      [
+        1722,
+        2321
+      ]
+    ],
+    "fp": 378,
+    "fn": 1722
+  },
+  "test_metrics": {
+    "threshold": 0.5,
+    "accuracy": 0.8002,
+    "precision": 0.7007,
+    "recall": 0.7796,
+    "f1": 0.738,
+    "f1_macro": 0.7883,
+    "f2": 0.7624,
+    "roc_auc": 0.8894,
+    "pr_auc": 0.8583,
+    "confusion_matrix": [
+      [
+        5019,
+        1163
+      ],
+      [
+        770,
+        2723
+      ]
+    ],
+    "fp": 1163,
+    "fn": 770
+  },
+  "lr_top10_coefficients": [
+    {
+      "feature": "https",
+      "coef": -0.9593,
+      "abs_coef": 0.9593
+    },
+    {
+      "feature": "special_char_count",
+      "coef": -0.7754,
+      "abs_coef": 0.7754
+    },
+    {
+      "feature": "query_param_count",
+      "coef": 0.6561,
+      "abs_coef": 0.6561
+    },
+    {
+      "feature": "host_length",
+      "coef": -0.512,
+      "abs_coef": 0.512
+    },
+    {
+      "feature": "dot_count",
+      "coef": 0.4495,
+      "abs_coef": 0.4495
+    },
+    {
+      "feature": "has_ip",
+      "coef": 0.3986,
+      "abs_coef": 0.3986
+    },
+    {
+      "feature": "domain_hyphen_count",
+      "coef": 0.3632,
+      "abs_coef": 0.3632
+    },
+    {
+      "feature": "path_length",
+      "coef": -0.3538,
+      "abs_coef": 0.3538
+    },
+    {
+      "feature": "suspicious_tld",
+      "coef": 0.3479,
+      "abs_coef": 0.3479
+    },
+    {
+      "feature": "domain_digit_ratio",
+      "coef": 0.2688,
+      "abs_coef": 0.2688
+    }
+  ],
+  "rf_top10_importances": [
+    {
+      "feature": "https",
+      "importance": 0.2691
+    },
+    {
+      "feature": "path_length",
+      "importance": 0.1295
+    },
+    {
+      "feature": "url_length",
+      "importance": 0.0867
+    },
+    {
+      "feature": "dot_count",
+      "importance": 0.0829
+    },
+    {
+      "feature": "domain_entropy",
+      "importance": 0.072
+    },
+    {
+      "feature": "digit_count",
+      "importance": 0.0635
+    },
+    {
+      "feature": "host_length",
+      "importance": 0.0629
+    },
+    {
+      "feature": "special_char_count",
+      "importance": 0.0441
+    },
+    {
+      "feature": "subdomain_count",
+      "importance": 0.0422
+    },
+    {
+      "feature": "query_param_count",
+      "importance": 0.0406
+    }
+  ],
+  "synthetic_20_evaluation": [
+    {
+      "url": "https://kaspi.kz/shop/p/apple-iphone-15-113123456/",
+      "expected": "SAFE",
+      "p_url": 0.0989,
+      "category": "SAFE"
+    },
+    {
+      "url": "https://halykbank.kz/ru/cards",
+      "expected": "SAFE",
+      "p_url": 0.5953,
+      "category": "SUSPICIOUS"
+    },
+    {
+      "url": "https://egov.kz/cms/ru/services/pass001_mvd",
+      "expected": "SAFE",
+      "p_url": 0.0721,
+      "category": "SAFE"
+    },
+    {
+      "url": "https://www.google.com/search?q=python+django",
+      "expected": "SAFE",
+      "p_url": 0.32,
+      "category": "SAFE"
+    },
+    {
+      "url": "https://github.com/django/django",
+      "expected": "SAFE",
+      "p_url": 0.2432,
+      "category": "SAFE"
+    },
+    {
+      "url": "https://www.wikipedia.org/wiki/Information_security",
+      "expected": "SAFE",
+      "p_url": 0.32,
+      "category": "SAFE"
+    },
+    {
+      "url": "https://www.microsoft.com/ru-kz/windows",
+      "expected": "SAFE",
+      "p_url": 0.32,
+      "category": "SAFE"
+    },
+    {
+      "url": "https://www.apple.com/kz/",
+      "expected": "SAFE",
+      "p_url": 0.32,
+      "category": "SAFE"
+    },
+    {
+      "url": "https://kazpost.kz/ru/tracking",
+      "expected": "SAFE",
+      "p_url": 0.1806,
+      "category": "SAFE"
+    },
+    {
+      "url": "https://www.paypal.com/kz/home",
+      "expected": "SAFE",
+      "p_url": 0.32,
+      "category": "SAFE"
+    },
+    {
+      "url": "http://192.0.2.15/account-update/login?verify=1",
+      "expected": "SUSPICIOUS/DANGEROUS",
+      "p_url": 0.96,
+      "category": "DANGEROUS"
+    },
+    {
+      "url": "http://xn--exmple-cua.test/secure/login?verify=1",
+      "expected": "SUSPICIOUS/DANGEROUS",
+      "p_url": 0.96,
+      "category": "DANGEROUS"
+    },
+    {
+      "url": "http://secure-bank-verify.example/login/confirm-card",
+      "expected": "SUSPICIOUS/DANGEROUS",
+      "p_url": 0.8454,
+      "category": "DANGEROUS"
+    },
+    {
+      "url": "http://kaspi-bonus-prize.test/claim/free-money?account=1",
+      "expected": "SUSPICIOUS/DANGEROUS",
+      "p_url": 0.96,
+      "category": "DANGEROUS"
+    },
+    {
+      "url": "http://halyk-security-update.example:8080/auth/password",
+      "expected": "SUSPICIOUS/DANGEROUS",
+      "p_url": 0.96,
+      "category": "DANGEROUS"
+    },
+    {
+      "url": "http://user@login.account-verify.test//redirect?url=http://evil.test",
+      "expected": "SUSPICIOUS/DANGEROUS",
+      "p_url": 0.96,
+      "category": "DANGEROUS"
+    },
+    {
+      "url": "http://bit.ly/prize-claim-test",
+      "expected": "SUSPICIOUS/DANGEROUS",
+      "p_url": 0.96,
+      "category": "DANGEROUS"
+    },
+    {
+      "url": "http://sub1.sub2.sub3.bank-unlock-card.example/verify?otp=1&cvv=2",
+      "expected": "SUSPICIOUS/DANGEROUS",
+      "p_url": 0.7069,
+      "category": "DANGEROUS"
+    },
+    {
+      "url": "http://kasp1-kz.test/secure/update-account",
+      "expected": "SUSPICIOUS/DANGEROUS",
+      "p_url": 0.7435,
+      "category": "DANGEROUS"
+    },
+    {
+      "url": "http://post-delivery-pay.example/customs/pay-fee?id=4821",
+      "expected": "SUSPICIOUS/DANGEROUS",
+      "p_url": 0.7214,
+      "category": "DANGEROUS"
+    }
+  ]
+}

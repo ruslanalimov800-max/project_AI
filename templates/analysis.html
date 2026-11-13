@@ -1,1 +1,295 @@
-{% extends 'base.html' %}{% block title %}Проверка SMS · SMS Guard{% endblock %}{% block content %}<div class="page-heading"><div><span class="eyebrow">АНАЛИЗ СООБЩЕНИЙ</span><h1>Проверка SMS</h1><p>Вставьте текст сообщения — система проверит его и найденные ссылки</p></div></div><section class="panel input-panel"><form method="post" id="smsForm">{% csrf_token %}<label class="form-label fw-semibold" for="smsText">Текст SMS</label><textarea class="form-control sms-input" name="text" id="smsText" maxlength="1000" minlength="1" required placeholder="Например: Ваша карта заблокирована. Срочно перейдите по ссылке..."></textarea><div class="input-meta"><span>Не более 1000 символов</span><span id="charCount">0 / 1000</span></div><div class="form-actions"><button class="btn btn-primary" type="submit">Проверить сообщение</button><button class="btn btn-light" type="reset" id="clearSms">Очистить</button></div></form></section>{% if result %}{% include 'result_card.html' %}{% endif %}{% endblock %}{% block extra_scripts %}{% endblock %}
+{% extends 'base.html' %}
+{% block title %}Проверка SMS · SMS Guard{% endblock %}
+{% block content %}
+<div class="page-heading">
+  <div>
+    <span class="eyebrow">АНАЛИЗ СООБЩЕНИЙ</span>
+    <h1>Проверка SMS</h1>
+    <p>Вставьте текст сообщения — система проверит его двумя ML-моделями, выявит признаки социальной инженерии и оценит найденные ссылки</p>
+  </div>
+</div>
+
+{% if not model_available %}
+<div class="alert alert-danger">
+  <strong>Внимание:</strong> Файл ML-модели классификации SMS отсутствует или временно недоступен (НФТ-14). Обратитесь к администратору.
+</div>
+{% endif %}
+
+<section class="panel input-panel">
+  <form method="post" id="smsForm" novalidate>
+    {% csrf_token %}
+    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-2">
+      <label class="form-label fw-semibold mb-0" for="smsText">Текст SMS</label>
+      <div class="d-flex gap-2 flex-wrap">
+        <span class="text-secondary small align-self-center">Примеры:</span>
+        <button type="button" class="btn btn-sm btn-outline-success example-btn"
+          data-text="Привет! Встречаемся завтра в 18:00 у входа в библиотеку.">
+          ● Безопасное
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-warning example-btn"
+          data-text="Ваша посылка ожидает оплаты таможенного сбора 350 ₸: http://post-delivery-pay.example">
+          ◆ Подозрительное
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-danger example-btn"
+          data-text="Ваша карта заблокирована! Срочно подтвердите данные по ссылке: http://secure-bank-verify.example/login">
+          ▲ Мошенническое
+        </button>
+      </div>
+    </div>
+
+    <textarea class="form-control sms-input" name="text" id="smsText" maxlength="1000" minlength="1" required
+      placeholder="Например: Ваша карта заблокирована! Срочно подтвердите данные по ссылке: http://secure-bank-verify.example/login">{{ submitted|default:'' }}</textarea>
+
+    <div class="input-meta">
+      <span>От 1 до 1000 символов (ссылки извлекаются автоматически, до 3 URL)</span>
+      <span id="charCount">0 / 1000</span>
+    </div>
+
+    <div id="fieldError" class="field-error mt-2 {% if not error_text %}d-none{% endif %}">{{ error_text|default:'' }}</div>
+
+    <div class="form-actions">
+      <button class="btn btn-primary" type="submit" id="submitSmsBtn">
+        <span id="submitSpinner" class="spinner-border spinner-border-sm me-2 d-none" role="status" aria-hidden="true"></span>
+        <span id="submitBtnText">Проверить сообщение</span>
+      </button>
+      <button class="btn btn-light" type="button" id="clearSms">Очистить</button>
+    </div>
+  </form>
+</section>
+
+<div id="dynamicResultContainer">
+  {% if result %}
+    {% include 'result_card.html' %}
+  {% endif %}
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script>
+(function() {
+  const field = document.getElementById('smsText');
+  const counter = document.getElementById('charCount');
+  const clearBtn = document.getElementById('clearSms');
+  const form = document.getElementById('smsForm');
+  const submitBtn = document.getElementById('submitSmsBtn');
+  const spinner = document.getElementById('submitSpinner');
+  const btnText = document.getElementById('submitBtnText');
+  const errorBox = document.getElementById('fieldError');
+  const container = document.getElementById('dynamicResultContainer');
+
+  function updateCounter() {
+    if (field && counter) {
+      counter.textContent = field.value.length + ' / 1000';
+    }
+  }
+  if (field) {
+    field.addEventListener('input', updateCounter);
+    updateCounter();
+  }
+  if (clearBtn && field) {
+    clearBtn.addEventListener('click', function() {
+      field.value = '';
+      updateCounter();
+      if (errorBox) { errorBox.classList.add('d-none'); errorBox.textContent = ''; }
+    });
+  }
+  document.querySelectorAll('.example-btn').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      if (field) {
+        field.value = btn.getAttribute('data-text') || '';
+        updateCounter();
+        if (errorBox) { errorBox.classList.add('d-none'); }
+      }
+    });
+  });
+
+  function renderResultSafe(data, rawText) {
+    container.textContent = '';
+    const lvl = (data.risk_level_lower || (data.risk_level || 'low').toLowerCase());
+    const section = document.createElement('section');
+    section.className = 'result-panel ' + lvl;
+
+    const top = document.createElement('div');
+    top.className = 'result-top';
+    const topLeft = document.createElement('div');
+    const eyebrow = document.createElement('span');
+    eyebrow.className = 'eyebrow';
+    eyebrow.textContent = 'РЕЗУЛЬТАТ АНАЛИЗА · ЯЗЫК: ' + String(data.language || 'en').toUpperCase();
+    const h2 = document.createElement('h2');
+    if (lvl === 'high') h2.textContent = '⚠ МОШЕННИЧЕСКОЕ СООБЩЕНИЕ (' + data.category + ')';
+    else if (lvl === 'medium') h2.textContent = '⚡ ПОДОЗРИТЕЛЬНОЕ СООБЩЕНИЕ (' + data.category + ')';
+    else h2.textContent = '✔ БЕЗОПАСНОЕ СООБЩЕНИЕ (' + data.category + ')';
+    topLeft.appendChild(eyebrow);
+    topLeft.appendChild(h2);
+
+    const badge = document.createElement('span');
+    badge.className = 'risk-badge ' + lvl;
+    badge.textContent = lvl === 'high' ? '▲ Риск: высокий' : (lvl === 'medium' ? '◆ Риск: средний' : '● Риск: низкий');
+    top.appendChild(topLeft);
+    top.appendChild(badge);
+    section.appendChild(top);
+
+    if (data.language_warning) {
+      const warn = document.createElement('div');
+      warn.className = 'alert alert-warning py-2 px-3 mb-3';
+      warn.textContent = data.language_warning;
+      section.appendChild(warn);
+    }
+
+    const scoreRow = document.createElement('div');
+    scoreRow.className = 'score-row';
+    const scoreLeft = document.createElement('div');
+    const scoreLbl = document.createElement('span');
+    scoreLbl.textContent = 'Risk Score ';
+    const scoreVal = document.createElement('strong');
+    scoreVal.textContent = String(data.risk_score) + ' / 100';
+    scoreLeft.appendChild(scoreLbl);
+    scoreLeft.appendChild(scoreVal);
+    const track = document.createElement('div');
+    track.className = 'score-track';
+    const bar = document.createElement('span');
+    bar.style.width = String(data.risk_score) + '%';
+    track.appendChild(bar);
+    scoreRow.appendChild(scoreLeft);
+    scoreRow.appendChild(track);
+    section.appendChild(scoreRow);
+
+    const probGrid = document.createElement('div');
+    probGrid.className = 'prob-grid';
+    const p1 = document.createElement('div');
+    const p1s = document.createElement('span');
+    p1s.textContent = 'Вероятность мошенничества по тексту (SMS-модель)';
+    const p1b = document.createElement('strong');
+    p1b.textContent = data.p_sms !== null && data.p_sms !== undefined ? Number(data.p_sms).toFixed(2) : 'Не применялась';
+    p1.appendChild(p1s); p1.appendChild(p1b);
+
+    const p2 = document.createElement('div');
+    const p2s = document.createElement('span');
+    p2s.textContent = 'Вероятность опасности ссылки (URL-модель)';
+    const p2b = document.createElement('strong');
+    p2b.textContent = data.p_url_max !== null && data.p_url_max !== undefined ? Number(data.p_url_max).toFixed(2) : 'Ссылок нет';
+    p2.appendChild(p2s); p2.appendChild(p2b);
+    probGrid.appendChild(p1); probGrid.appendChild(p2);
+    section.appendChild(probGrid);
+
+    const txtSec = document.createElement('div');
+    txtSec.className = 'result-section';
+    const txtH3 = document.createElement('h3');
+    txtH3.textContent = 'Проверенный текст (неактивный)';
+    const txtP = document.createElement('p');
+    txtP.className = 'preserve-text mb-0';
+    txtP.textContent = rawText; // Строго через textContent (Задание 15 п.6, защита от XSS)
+    txtSec.appendChild(txtH3); txtSec.appendChild(txtP);
+    section.appendChild(txtSec);
+
+    if (Array.isArray(data.urls) && data.urls.length > 0) {
+      const urlSec = document.createElement('div');
+      urlSec.className = 'result-section';
+      const uH3 = document.createElement('h3');
+      uH3.textContent = 'Найденные ссылки (не открываются, проверены отдельно)';
+      urlSec.appendChild(uH3);
+      data.urls.forEach(function(u) {
+        const row = document.createElement('div');
+        row.className = 'url-result mb-2';
+        const spanUrl = document.createElement('span');
+        spanUrl.className = 'url-plain';
+        const domStrong = document.createElement('strong');
+        domStrong.textContent = u.domain ? ('[' + u.domain + '] ') : '';
+        spanUrl.appendChild(domStrong);
+        spanUrl.appendChild(document.createTextNode(u.url));
+        const uBadge = document.createElement('span');
+        const uCat = u.category || 'SAFE';
+        const uLvl = uCat === 'DANGEROUS' ? 'high' : (uCat === 'SUSPICIOUS' ? 'medium' : 'low');
+        uBadge.className = 'risk-badge ' + uLvl;
+        const uP = (u.p_url !== null && u.p_url !== undefined) ? ' (P=' + Number(u.p_url).toFixed(2) + ')' : '';
+        uBadge.textContent = (uCat === 'DANGEROUS' ? '▲ Опасная' : (uCat === 'SUSPICIOUS' ? '◆ Подозрительная' : '● Безопасная')) + uP;
+        row.appendChild(spanUrl);
+        row.appendChild(uBadge);
+        urlSec.appendChild(row);
+      });
+      section.appendChild(urlSec);
+    }
+
+    const expSec = document.createElement('div');
+    expSec.className = 'result-section';
+    const eH3 = document.createElement('h3');
+    eH3.textContent = 'Обнаруженные признаки и объяснение результата';
+    const ul = document.createElement('ul');
+    ul.className = 'feature-list';
+    (data.explanation || []).forEach(function(item) {
+      const li = document.createElement('li');
+      li.textContent = item;
+      ul.appendChild(li);
+    });
+    expSec.appendChild(eH3); expSec.appendChild(ul);
+    section.appendChild(expSec);
+
+    const recDiv = document.createElement('div');
+    recDiv.className = 'recommendation';
+    const recStrong = document.createElement('strong');
+    recStrong.textContent = 'Рекомендация пользователю:';
+    const recP = document.createElement('p');
+    recP.className = 'mb-1';
+    recP.textContent = data.recommendation || '';
+    const recSmall = document.createElement('small');
+    recSmall.className = 'text-secondary';
+    recSmall.textContent = data.disclaimer || 'Оценка носит вероятностный характер и не гарантирует безопасность.';
+    recDiv.appendChild(recStrong); recDiv.appendChild(recP); recDiv.appendChild(recSmall);
+    section.appendChild(recDiv);
+
+    container.appendChild(section);
+  }
+
+  if (form && window.fetch) {
+    form.addEventListener('submit', function(ev) {
+      ev.preventDefault();
+      if (errorBox) { errorBox.classList.add('d-none'); errorBox.textContent = ''; }
+      const textVal = field ? field.value.trim() : '';
+      if (!textVal) {
+        if (errorBox) {
+          errorBox.textContent = 'Текст SMS не может быть пустым. Введите сообщение для анализа.';
+          errorBox.classList.remove('d-none');
+        }
+        return;
+      }
+      if (textVal.length > 1000) {
+        if (errorBox) {
+          errorBox.textContent = 'Длина текста SMS не должна превышать 1000 символов.';
+          errorBox.classList.remove('d-none');
+        }
+        return;
+      }
+      submitBtn.disabled = true;
+      spinner.classList.remove('d-none');
+      btnText.textContent = 'Анализ...';
+      const csrfInput = form.querySelector('input[name="csrfmiddlewaretoken"]');
+      fetch('/api/v1/check/sms/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRFToken': csrfInput ? csrfInput.value : ''
+        },
+        body: JSON.stringify({ text: textVal })
+      })
+      .then(function(res) { return res.json().then(function(body) { return { status: res.status, body: body }; }); })
+      .then(function(resp) {
+        if (resp.status >= 200 && resp.status < 300) {
+          renderResultSafe(resp.body, textVal);
+        } else {
+          const msg = (resp.body && resp.body.error && resp.body.error.message) ? resp.body.error.message : 'Ошибка при анализе сообщения.';
+          if (errorBox) { errorBox.textContent = msg; errorBox.classList.remove('d-none'); }
+        }
+      })
+      .catch(function() {
+        form.submit();
+      })
+      .finally(function() {
+        submitBtn.disabled = false;
+        spinner.classList.add('d-none');
+        btnText.textContent = 'Проверить сообщение';
+      });
+    });
+  }
+})();
+</script>
+{% endblock %}

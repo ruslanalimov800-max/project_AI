@@ -1,0 +1,73 @@
+@startuml
+title ER Diagram: SMS Guard
+entity User {
+  * id : int <<PK>>
+  --
+  username : varchar
+  email : varchar
+  is_staff : bool
+}
+
+entity UserProfile {
+  * id : int <<PK>>
+  --
+  * user_id : int <<FK>>
+  store_sms_text : bool
+  preferred_language : varchar(5)
+}
+
+entity Check {
+  * id : int <<PK>>
+  --
+  * user_id : int <<FK>>
+  check_type : varchar(10)
+  input_text : text (nullable)
+  input_masked : text
+  language : varchar(5)
+  category : varchar(32)
+  risk_level : varchar(10)
+  risk_score : int
+  p_sms : float
+  p_url : float
+  explanation : json
+  created_at : datetime
+}
+
+entity URLResult {
+  * id : int <<PK>>
+  --
+  * analysis_check_id : int <<FK>>
+  url : varchar(2048)
+  domain : varchar(255)
+  p_url : float
+  category : varchar(20)
+  features_json : json
+}
+
+entity DetectedFeature {
+  * id : int <<PK>>
+  --
+  * analysis_check_id : int <<FK>>
+  group : varchar(40)
+  code : varchar(40)
+  title : varchar(120)
+  weight : float
+  matched_phrase : varchar(120)
+}
+
+entity ModelVersion {
+  * id : int <<PK>>
+  --
+  model_type : varchar(10)
+  version : varchar(40)
+  algorithm : varchar(60)
+  metrics_json : json
+  threshold : float
+  is_active : bool
+}
+
+User ||--|| UserProfile
+User ||--o{ Check
+Check ||--o{ URLResult
+Check ||--o{ DetectedFeature
+@enduml

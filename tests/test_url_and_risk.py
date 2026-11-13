@@ -42,7 +42,7 @@ def test_required_demo_scenarios():
     no_url_social = analyze_message("Ваш счёт заблокирован. Срочно сообщите код из SMS.")
     assert safe["urls"] == [] and safe["p_url_max"] is None
     assert transfer["risk_score"] > safe["risk_score"]
-    assert suspicious["urls"] and suspicious["p_url_max"] is None
+    assert suspicious["urls"] and suspicious["p_url_max"] is not None
     assert url_only["check_type"] == "url" and url_only["p_sms"] is None
     assert no_url_social["urls"] == [] and no_url_social["p_url_max"] is None
     assert no_url_social["risk_score"] > safe["risk_score"]
@@ -53,3 +53,33 @@ def test_joint_analyzer_handles_one_and_three_urls():
     three = analyze_message("https://a.com https://b.kz https://c.org https://d.net")
     assert len(one["urls"]) == 1
     assert len(three["urls"]) == 3
+
+
+def test_url_features_extended_and_reason():
+    from ml.url_features import validate_url_with_reason, explain_url
+    ok, _ = validate_url_with_reason("https://example.com/path?a=1&b=2")
+    assert ok
+    bad, reason = validate_url_with_reason("javascript:alert(1)")
+    assert not bad and reason
+
+    puny = extract_url_features("http://xn--e1afmkfd.xn--p1ai/login")
+    assert puny["has_punycode"] == 1
+    spoof = extract_url_features("http://kaspi1.kz/auth")
+    assert spoof["brand_spoof"] == 1
+    short = extract_url_features("https://bit.ly/3abc")
+    assert short["has_shortener"] == 1
+    assert len(explain_url(spoof)) >= 1
+
+
+def test_risk_thresholds_and_overrides():
+    from ml.risk import compute_risk
+    # Без URL веса (0.5, 0.2) нормируются на 0.7: 0.47 * (5/7) * 100 ≈ 34, 0.49 * (5/7) * 100 = 35
+    r34 = compute_risk(p_sms=0.47, se_groups=[])
+    assert r34.risk_score == 34 and r34.category == "SAFE"
+    r35 = compute_risk(p_sms=0.49, se_groups=[])
+    assert r35.risk_score == 35 and r35.category == "SUSPICIOUS"
+    r_code = compute_risk(p_sms=0.1, se_groups=["CODE_REQUEST"])
+    assert r_code.category in ("SUSPICIOUS", "FRAUDULENT")
+    assert r_code.risk_score >= 35
+    r_high = compute_risk(p_sms=0.9, p_url_max=0.9, se_groups=["URGENCY", "CODE_REQUEST"])
+    assert r_high.risk_score >= 70 and r_high.category == "FRAUDULENT"
